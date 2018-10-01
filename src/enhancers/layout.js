@@ -51,9 +51,9 @@ export const propEnhancers = {
   boxSizing: value => getCss(boxSizing, value),
   clear: value => getCss(clear, value),
   clearfix: () => ({
-    className: '📦clearfix',
+    className: 'al-clearfix',
     styles: `
-.📦clearfix:before, .📦clearfix:after {
+.al-clearfix:before, .al-clearfix:after {
   display: table;
   clear: both;
   content: "";

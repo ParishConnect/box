@@ -1,11 +1,10 @@
 {
-  "name": "aluminum-box",
+  "name": "@hennessyevan/aluminum-box",
   "version": "1.0.0",
   "description": "React UI Primitive for ",
   "contributors": [
     "Evan Hennessy (hello@hennessyevan.com)"
   ],
-  "private": true,
   "keywords": [
     "react"
   ],
