@@ -1,6 +1,6 @@
 {
-	"name": "aluminum-box",
-	"version": "1.1.0",
+	"name": "@hennessyevan/aluminum-box",
+	"version": "2.0.0",
 	"description": "Blazing Fast React UI Primitive",
 	"contributors": [
 		"Evan Hennessy <hello@hennessyevan.com>"
@@ -10,44 +10,54 @@
 	],
 	"repository": "hennessyevan/aluminum-box",
 	"license": "MIT",
-	"main": "lib/index.js",
+	"main": "lib/src/index.js",
 	"files": [
-		"lib"
+		"lib/src"
 	],
 	"sideEffects": false,
 	"scripts": {
-		"test": "xo && nyc ava",
+		"test": "yarn run tslint && xo && nyc ava",
+		"tslint": "tslint -c tslint.json 'src/**/*.ts'",
 		"prepublishOnly": "rm -rf lib && yarn run build",
 		"precommit": "lint-staged",
-		"dev": "start-storybook -p 9009",
-		"build": "babel --out-dir lib src --source-maps inline",
+		"dev": "start-storybook -p 9009 -c .storybook",
+		"build": "tsc --declaration",
 		"build-storybook": "build-storybook -s .storybook/static -o .out",
 		"release": "np --no-publish",
-		"benchmark": "echo ui-box && react-benchmark tools/benchmarks/box.js && echo glamor/jsxstyle && react-benchmark tools/benchmarks/glamor-jsxstyle.js",
+		"benchmark": "echo aluminum-box && react-benchmark tools/benchmarks/box.js && echo glamor/jsxstyle && react-benchmark tools/benchmarks/glamor-jsxstyle.js",
 		"size": "size-limit",
 		"coverage": "nyc report --reporter=html"
 	},
 	"dependencies": {
-		"@emotion/hash": "^0.6.5",
 		"glamor": "^2.20.0",
 		"inline-style-prefixer": "^5.0.1",
+		"murmurhash-js": "^1.0.0",
 		"prop-types": "^15.6.0"
 	},
 	"peerDependencies": {
 		"react": "^16.0.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.2.2",
 		"@babel/cli": "^7.0.0",
+		"@babel/core": "^7.2.2",
 		"@babel/plugin-proposal-class-properties": "^7.0.0",
 		"@babel/preset-env": "^7.0.0",
 		"@babel/preset-react": "^7.0.0",
 		"@babel/register": "^7.0.0",
-		"@storybook/react": "^3.4.10",
+		"@storybook/react": "^4.1.4",
 		"@storybook/storybook-deployer": "^2.2.0",
-		"ava": "^1.0.0-beta.8",
-		"babel-core": "7.0.0-bridge.0",
+		"@types/enzyme": "^3.1.15",
+		"@types/inline-style-prefixer": "^5.0.0",
+		"@types/murmurhash-js": "^1.0.3",
+		"@types/prop-types": "^15.5.8",
+		"@types/react": "^16.7.18",
+		"@types/react-test-renderer": "^16.0.3",
+		"@types/sinon": "^7.0.3",
+		"ava": "^1.0.1",
+		"awesome-typescript-loader": "^5.2.1",
 		"babel-eslint": "^9.0.0",
+		"babel-loader": "^8.0.4",
+		"csstype": "^2.6.0",
 		"enzyme": "^3.4.1",
 		"enzyme-adapter-react-16": "^1.2.0",
 		"eslint-config-xo-react": "^0.17.0",
@@ -57,10 +67,16 @@
 		"nyc": "^13.0.1",
 		"react": "^16.4.2",
 		"react-benchmark": "^1.1.0",
+		"react-docgen-typescript-loader": "^3.0.0",
 		"react-dom": "^16.4.2",
 		"react-test-renderer": "^16.4.2",
 		"sinon": "^6.1.5",
 		"size-limit": "^0.20.0",
+		"ts-node": "^7.0.1",
+		"tslint": "^5.12.0",
+		"tslint-react": "^3.6.0",
+		"tslint-xo": "^0.11.0",
+		"typescript": "^3.2.2",
 		"xo": "^0.23.0"
 	},
 	"xo": {
@@ -69,6 +85,10 @@
 		"envs": [
 			"node",
 			"browser"
+		],
+		"ignores": [
+			"**/*.ts",
+			"**/*.tsx"
 		],
 		"prettier": true,
 		"space": true,
@@ -98,14 +118,19 @@
 	},
 	"size-limit": [
 		{
-			"path": "lib/index.js",
+			"path": "lib/src/index.js",
 			"limit": "19 KB"
 		}
 	],
 	"ava": {
 		"require": [
-			"@babel/register",
+			"ts-node/register",
 			"./test/_setup"
+		],
+		"compileEnhancements": false,
+		"extensions": [
+			"ts",
+			"tsx"
 		]
 	}
 }

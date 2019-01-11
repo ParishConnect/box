@@ -1,12 +1,12 @@
 <div align="center">
   <br>
   <br>
-	<img src="https://rawgit.com/segmentio/ui-box/master/logo.svg" alt="UI-BOX: Blazing Fast React UI Primitive">
+	<img src="https://rawgit.com/segmentio/aluminum-box/master/logo.svg" alt="aluminum-box: Blazing Fast React UI Primitive">
 	<br>
 	<br>
 	<br>
-  <a href="https://circleci.com/gh/segmentio/ui-box/tree/master">
-    <img src="https://circleci.com/gh/segmentio/ui-box/tree/master.svg?style=svg" alt="Build Status">
+  <a href="https://circleci.com/gh/segmentio/aluminum-box/tree/master">
+    <img src="https://circleci.com/gh/segmentio/aluminum-box/tree/master.svg?style=svg" alt="Build Status">
   </a>
   <br>
 	<br>
@@ -19,15 +19,15 @@ aluminum-box is a low level CSS-in-JS solution that focuses on being simple, fas
 ## Install
 
 ```shell
-yarn add ui-box
+yarn add aluminum-box
 # or
-npm install --save ui-box
+npm install --save aluminum-box
 ```
 
 ## Usage
 
 ```jsx
-import Box from "ui-box";
+import Box from "aluminum-box";
 
 function Button(props) {
 	return <Box is="button" padding="10px" background="red" {...props} />;
@@ -328,7 +328,7 @@ const page = `
     <main id="root">
       ${html}
     </main>
-    <script type="application/json" id="ui-box-cache">
+    <script type="application/json" id="aluminum-box-cache">
       ${JSON.stringify(cache)}
     </script>
   </body>
@@ -348,6 +348,6 @@ console.log(page);
 
 ## License
 
-ui-box is released under the MIT license.
+aluminum-box is released under the MIT license.
 
 Copyright © 2017 Segment.io, Inc.
