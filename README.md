@@ -14,7 +14,7 @@
 	<br>
 </div>
 
-al- ui-box is a low level CSS-in-JS solution that focuses on being simple, fast and extensible. All CSS properties are set using simple React props, which allows you to easily create reusable components that can be enhanced with additional CSS properties. This is very useful for adding things like margins to components, which would normally require adding non-reusable wrapper elements/classes.
+aluminum-box is a low level CSS-in-JS solution that focuses on being simple, fast and extensible. All CSS properties are set using simple React props, which allows you to easily create reusable components that can be enhanced with additional CSS properties. This is very useful for adding things like margins to components, which would normally require adding non-reusable wrapper elements/classes.
 
 ## Install
 
@@ -30,15 +30,15 @@ npm install --save ui-box
 import Box from "ui-box";
 
 function Button(props) {
-  return <Box is="button" padding="10px" background="red" {...props} />;
+	return <Box is="button" padding="10px" background="red" {...props} />;
 }
 
 function Example() {
-  return (
-    <Button disabled margin="10px">
-      Hi
-    </Button>
-  );
+	return (
+		<Button disabled margin="10px">
+			Hi
+		</Button>
+	);
 }
 ```
 
@@ -58,7 +58,7 @@ E.g:
 
 ```jsx
 <Box is={Link} to="/login">
-  Login
+	Login
 </Box>
 ```
 

@@ -15,7 +15,7 @@ export default function getCss(propertyInfo, value) {
       const name = propertyInfo.jsName
       const encodedValue = JSON.stringify(value)
       console.error(
-        `al- ui-box: property “${name}” was passed invalid value “${encodedValue}”. Only numbers and strings are supported.`
+        `aluminum-box: property “${name}” was passed invalid value “${encodedValue}”. Only numbers and strings are supported.`
       )
     }
     return null

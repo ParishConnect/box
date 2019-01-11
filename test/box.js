@@ -54,7 +54,7 @@ test('is prop allows changing the component type', t => {
   t.true(component.is(TestComponent))
 })
 
-test('css prop renders an emotion class', t => {
+test('css prop renders a glamor class', t => {
   const component = shallow(<Box css={{height: '10px'}} />)
   t.true(component.hasClass('css-882mhe'))
 })
