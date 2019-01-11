@@ -1,3 +1,5 @@
+// This file is based off glamor's StyleSheet
+// https://github.com/threepointone/glamor/blob/v2.20.40/src/sheet.js
 const isBrowser = typeof window !== 'undefined'
 const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
 const isTest = process.env.NODE_ENV === 'test'

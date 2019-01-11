@@ -1,113 +1,111 @@
 {
-  "name": "@hennessyevan/aluminum-box",
-  "version": "1.0.1",
-  "description": "React UI Primitive for ",
-  "contributors": [
-    "Evan Hennessy (hello@hennessyevan.com)"
-  ],
-  "keywords": [
-    "react"
-  ],
-  "repository": "hennessyevan/aluminum-box",
-  "license": "MIT",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
-  "sideEffects": false,
-  "scripts": {
-    "test": "xo && nyc ava",
-    "prepublishOnly": "rm -rf lib && yarn run build",
-    "precommit": "lint-staged",
-    "dev": "start-storybook -p 9009",
-    "build": "babel --out-dir lib src --source-maps inline",
-    "build-storybook": "build-storybook -s .storybook/static -o .out",
-    "release": "np --no-publish",
-    "benchmark": "echo ui-box && react-benchmark tools/benchmarks/box.js && echo glamor/jsxstyle && react-benchmark tools/benchmarks/glamor-jsxstyle.js",
-    "size": "size-limit",
-    "coverage": "nyc report --reporter=html"
-  },
-  "dependencies": {
-    "@emotion/hash": "^0.6.5",
-    "babel-plugin-emotion": "^10.0.5",
-    "emotion": "^10.0.5",
-    "glamor": "^2.20.0",
-    "inline-style-prefixer": "^5.0.1",
-    "prop-types": "^15.6.0",
-    "react-emotion": "^10.0.0"
-  },
-  "peerDependencies": {
-    "react": "^16.0.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
-    "@storybook/react": "^4.1.4",
-    "@storybook/storybook-deployer": "^2.2.0",
-    "ava": "^1.0.0-beta.8",
-    "babel-eslint": "^10.0.1",
-    "enzyme": "^3.4.1",
-    "enzyme-adapter-react-16": "^1.2.0",
-    "eslint-config-xo-react": "^0.17.0",
-    "eslint-plugin-react": "^7.10.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.2.2",
-    "nyc": "^13.0.1",
-    "react": "^16.4.2",
-    "react-benchmark": "^1.1.0",
-    "react-dom": "^16.4.2",
-    "react-test-renderer": "^16.4.2",
-    "sinon": "^6.1.5",
-    "size-limit": "^0.20.0",
-    "xo": "^0.23.0"
-  },
-  "xo": {
-    "parser": "babel-eslint",
-    "extends": "xo-react",
-    "envs": [
-      "node",
-      "browser"
-    ],
-    "prettier": true,
-    "space": true,
-    "semicolon": false,
-    "rules": {
-      "react/jsx-sort-props": [
-        "error",
-        {
-          "callbacksLast": false,
-          "shorthandFirst": false,
-          "noSortAlphabetically": true,
-          "reservedFirst": true
-        }
-      ]
-    },
-    "settings": {
-      "react": {
-        "version": "16.5.0"
-      }
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "xo --fix",
-      "git add"
-    ]
-  },
-  "size-limit": [
-    {
-      "path": "lib/index.js",
-      "limit": "19 KB"
-    }
-  ],
-  "ava": {
-    "require": [
-      "@babel/register",
-      "./test/_setup"
-    ]
-  }
+	"name": "aluminum-box",
+	"version": "1.1.0",
+	"description": "Blazing Fast React UI Primitive",
+	"contributors": [
+		"Evan Hennessy <hello@hennessyevan.com>"
+	],
+	"keywords": [
+		"react"
+	],
+	"repository": "hennessyevan/aluminum-box",
+	"license": "MIT",
+	"main": "lib/index.js",
+	"files": [
+		"lib"
+	],
+	"sideEffects": false,
+	"scripts": {
+		"test": "xo && nyc ava",
+		"prepublishOnly": "rm -rf lib && yarn run build",
+		"precommit": "lint-staged",
+		"dev": "start-storybook -p 9009",
+		"build": "babel --out-dir lib src --source-maps inline",
+		"build-storybook": "build-storybook -s .storybook/static -o .out",
+		"release": "np --no-publish",
+		"benchmark": "echo ui-box && react-benchmark tools/benchmarks/box.js && echo glamor/jsxstyle && react-benchmark tools/benchmarks/glamor-jsxstyle.js",
+		"size": "size-limit",
+		"coverage": "nyc report --reporter=html"
+	},
+	"dependencies": {
+		"@emotion/hash": "^0.6.5",
+		"glamor": "^2.20.0",
+		"inline-style-prefixer": "^5.0.1",
+		"prop-types": "^15.6.0"
+	},
+	"peerDependencies": {
+		"react": "^16.0.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.2.2",
+		"@babel/cli": "^7.0.0",
+		"@babel/plugin-proposal-class-properties": "^7.0.0",
+		"@babel/preset-env": "^7.0.0",
+		"@babel/preset-react": "^7.0.0",
+		"@babel/register": "^7.0.0",
+		"@storybook/react": "^3.4.10",
+		"@storybook/storybook-deployer": "^2.2.0",
+		"ava": "^1.0.0-beta.8",
+		"babel-core": "7.0.0-bridge.0",
+		"babel-eslint": "^9.0.0",
+		"enzyme": "^3.4.1",
+		"enzyme-adapter-react-16": "^1.2.0",
+		"eslint-config-xo-react": "^0.17.0",
+		"eslint-plugin-react": "^7.10.0",
+		"husky": "^0.14.3",
+		"lint-staged": "^7.2.2",
+		"nyc": "^13.0.1",
+		"react": "^16.4.2",
+		"react-benchmark": "^1.1.0",
+		"react-dom": "^16.4.2",
+		"react-test-renderer": "^16.4.2",
+		"sinon": "^6.1.5",
+		"size-limit": "^0.20.0",
+		"xo": "^0.23.0"
+	},
+	"xo": {
+		"parser": "babel-eslint",
+		"extends": "xo-react",
+		"envs": [
+			"node",
+			"browser"
+		],
+		"prettier": true,
+		"space": true,
+		"semicolon": false,
+		"rules": {
+			"react/jsx-sort-props": [
+				"error",
+				{
+					"callbacksLast": false,
+					"shorthandFirst": false,
+					"noSortAlphabetically": true,
+					"reservedFirst": true
+				}
+			]
+		},
+		"settings": {
+			"react": {
+				"version": "16.5.0"
+			}
+		}
+	},
+	"lint-staged": {
+		"*.js": [
+			"xo --fix",
+			"git add"
+		]
+	},
+	"size-limit": [
+		{
+			"path": "lib/index.js",
+			"limit": "19 KB"
+		}
+	],
+	"ava": {
+		"require": [
+			"@babel/register",
+			"./test/_setup"
+		]
+	}
 }

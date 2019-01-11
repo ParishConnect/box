@@ -4,7 +4,7 @@ import {css as gcss} from 'glamor'
 import {propTypes} from './enhancers'
 import enhanceProps from './enhance-props'
 
-let cssWarned = false
+// Let cssWarned = false;
 
 export default class Box extends React.Component {
   static displayName = 'Box'
@@ -34,12 +34,12 @@ export default class Box extends React.Component {
       // Warn that it's deprecated in the development
       if (process.env.NODE_ENV !== 'production') {
         // Don't spam the warning
-        if (!cssWarned) {
-          cssWarned = true
-          console.warn(
-            `aluminum-box deprecation: the “css” prop will be removed in the next major version in favour of importing glamor directly and passing it՚s generated class to the “className” prop.`
-          )
-        }
+        // if (!cssWarned) {
+        //   cssWarned = true
+        //   console.warn(
+        //     `aluminum-box deprecation: the “css” prop will be removed in the next major version in favour of importing glamor directly and passing it՚s generated class to the “className” prop.`
+        //   )
+        // }
       }
       parsedProps.className = `${className} ${gcss(css).toString()}`
     } else {
