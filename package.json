@@ -14,6 +14,7 @@
 	"files": [
 		"lib/src"
 	],
+	"types": "lib/index.d.ts",
 	"sideEffects": false,
 	"scripts": {
 		"test": "yarn run tslint && xo && nyc ava",
@@ -74,6 +75,7 @@
 		"size-limit": "^0.20.0",
 		"ts-node": "^7.0.1",
 		"tslint": "^5.12.0",
+		"tslint-config-prettier": "^1.18.0",
 		"tslint-react": "^3.6.0",
 		"tslint-xo": "^0.11.0",
 		"typescript": "^3.2.2",
@@ -90,7 +92,6 @@
 			"**/*.ts",
 			"**/*.tsx"
 		],
-		"prettier": true,
 		"space": true,
 		"semicolon": false,
 		"rules": {
