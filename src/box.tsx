@@ -20,13 +20,13 @@ class Box extends React.Component<BoxProps, {}> {
 		// Add glamor class
 		if (css) {
 			// Warn that it's deprecated in the development
-			if (process.env.NODE_ENV !== "production" && !cssWarned) {
-				// Don't spam the warning
-				cssWarned = true;
-				console.warn(
-					`al- aluminum-box deprecation: the “css” prop will be removed in the next major version in favour of importing glamor directly and passing it՚s generated class to the “className” prop.`
-				);
-			}
+			// if (process.env.NODE_ENV !== "production" && !cssWarned) {
+			// 	// Don't spam the warning
+			// 	cssWarned = true;
+			// 	console.warn(
+			// 		`al- aluminum-box deprecation: the “css” prop will be removed in the next major version in favour of importing glamor directly and passing it՚s generated class to the “className” prop.`
+			// 	);
+			// }
 			parsedProps.className = `${className} ${gcss(css).toString()}`;
 		} else {
 			parsedProps.className = className;
