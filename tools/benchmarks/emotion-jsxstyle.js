@@ -1,9 +1,9 @@
+import {Box} from 'emotion-jsxstyle'
 import React from 'react'
-import {View} from 'glamor/jsxstyle'
 
 export default function benchmark() {
   return (
-    <View
+    <Box
       component="div"
       contentEditable // Test prop pass through
       alignContent="center"

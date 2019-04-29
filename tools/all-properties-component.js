@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Box from '../src'
+import Box from '../lib/src'
 
 // Built as a regular function instead of a component to reduce impact on the benchmark
 export default () => {
