@@ -1,5 +1,5 @@
 import * as PropTypes from 'prop-types';
-import getCss from '../get-css';
+import getCss, { GetCSS } from '../get-css';
 import { PropEncharValueType as ValueType } from './types';
 
 export const propTypes = {
@@ -48,9 +48,9 @@ const boxSizing = {
 };
 
 export const propEnhancers = {
-  boxSizing: (value: ValueType) => getCss(boxSizing, value),
-  clear: (value: ValueType) => getCss(clear, value),
-  clearfix: () => ({
+  boxSizing: (value: ValueType): GetCSS => getCss(boxSizing, value),
+  clear: (value: ValueType): GetCSS => getCss(clear, value),
+  clearfix: (): GetCSS => ({
     className: 'al-clearfix',
     styles: `
 .al-clearfix:before, .al-clearfix:after {
@@ -59,7 +59,7 @@ export const propEnhancers = {
   content: "";
 }`
   }),
-  display: (value: ValueType) => getCss(display, value),
-  float: (value: ValueType) => getCss(float, value),
-  zIndex: (value: ValueType) => getCss(zIndex, value)
+  display: (value: ValueType): GetCSS => getCss(display, value),
+  float: (value: ValueType): GetCSS => getCss(float, value),
+  zIndex: (value: ValueType): GetCSS => getCss(zIndex, value)
 };

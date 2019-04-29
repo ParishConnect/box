@@ -1,4 +1,4 @@
-import allPropertiesComponent from '../all-properties-component'
+import allPropertiesComponent from '../all-properties-componentJS'
 
 export default function benchmark() {
   return allPropertiesComponent()

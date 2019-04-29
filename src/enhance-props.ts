@@ -1,22 +1,31 @@
-import {propEnhancers} from './enhancers'
-import expandAliases from './expand-aliases'
+import { BoxProps } from './box-types'
 import * as cache from './cache'
+import { propEnhancers } from './enhancers'
+import expandAliases from './expand-aliases'
 import * as styles from './styles'
-import {BoxProps} from './box-types'
 
 interface EnhancedPropsResult {
+  mqCSS: Partial<BoxProps>
   className: string
   enhancedProps: Partial<BoxProps>
 }
 /**
  * Converts the CSS props to class names and inserts the styles.
  */
-export default function enhanceProps(rawProps: Partial<BoxProps>): EnhancedPropsResult {
+export default function enhanceProps(
+  rawProps: Partial<BoxProps>
+): EnhancedPropsResult {
   const propsMap = expandAliases(rawProps)
   const enhancedProps = {}
+  const mqCSS = {}
   let className = rawProps.className || ''
 
   for (const [propName, propValue] of propsMap) {
+    if (Array.isArray(propValue)) {
+      mqCSS[propName] = propValue
+      continue
+    }
+
     const cachedClassName = cache.get(propName, propValue)
     if (cachedClassName) {
       className = `${className} ${cachedClassName}`
@@ -50,5 +59,5 @@ export default function enhanceProps(rawProps: Partial<BoxProps>): EnhancedProps
 
   className = className.trim()
 
-  return {className, enhancedProps}
+  return { className, enhancedProps, mqCSS }
 }

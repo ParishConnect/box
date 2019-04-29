@@ -1,6 +1,8 @@
-import prefixer, { Rule } from './prefixer';
-import valueToString from './value-to-string';
-import getClassName, { PropertyInfo } from './get-class-name';
+import getClassName, { PropertyInfo } from './get-class-name'
+import prefixer, { Rule } from './prefixer'
+import valueToString from './value-to-string'
+
+export type GetCSS = { className: string; styles: string } | undefined
 
 /**
  * Generates the class name and styles.
@@ -8,47 +10,47 @@ import getClassName, { PropertyInfo } from './get-class-name';
 export default function getCss(
   propertyInfo: PropertyInfo,
   value: string | number
-) {
-  let rules: Rule[];
+): GetCSS {
+  let rules: Rule[]
 
   // Protect against unexpected values
-  const valueType = typeof value;
+  const valueType = typeof value
   if (valueType !== 'string' && valueType !== 'number') {
     if (process.env.NODE_ENV !== 'production') {
-      const name = propertyInfo.jsName;
-      const encodedValue = JSON.stringify(value);
+      const name = propertyInfo.jsName
+      const encodedValue = JSON.stringify(value)
       console.error(
         `al- aluminum-box: property “${name}” was passed invalid value “${encodedValue}”. Only numbers and strings are supported.`
-      );
+      )
     }
-    return null;
+    return
   }
 
-  const valueString = valueToString(value, propertyInfo.defaultUnit);
-  const className = getClassName(propertyInfo, valueString);
+  const valueString = valueToString(value, propertyInfo.defaultUnit)
+  const className = getClassName(propertyInfo, valueString)
 
   // Avoid running the prefixer when possible because it's slow
   if (propertyInfo.isPrefixed) {
-    rules = prefixer(propertyInfo.jsName || '', valueString);
+    rules = prefixer(propertyInfo.jsName || '', valueString)
   } else {
-    rules = [{ property: propertyInfo.cssName || '', value: valueString }];
+    rules = [{ property: propertyInfo.cssName || '', value: valueString }]
   }
 
-  let styles: string;
+  let styles: string
   if (process.env.NODE_ENV === 'production') {
     const rulesString = rules
       .map(rule => `${rule.property}:${rule.value}`)
-      .join(';');
-    styles = `.${className}{${rulesString}}`;
+      .join(';')
+    styles = `.${className}{${rulesString}}`
   } else {
     const rulesString = rules
       .map(rule => `  ${rule.property}: ${rule.value};`)
-      .join('\n');
+      .join('\n')
     styles = `
 .${className} {
 ${rulesString}
-}`;
+}`
   }
 
-  return { className, styles };
+  return { className, styles }
 }

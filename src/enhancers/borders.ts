@@ -1,7 +1,7 @@
-import * as PropTypes from 'prop-types'
-import getCss from '../get-css'
-import {spacesOutsideParentheses} from '../utils/regex'
-import {PropEncharValueType as ValueType} from './types'
+import * as PropTypes from 'prop-types';
+import getCss, { GetCSS } from '../get-css';
+import { spacesOutsideParentheses } from '../utils/regex';
+import { PropEncharValueType as ValueType } from './types';
 
 export const propTypes = {
   border: PropTypes.string,
@@ -24,7 +24,7 @@ export const propTypes = {
   borderTopStyle: PropTypes.string,
   borderTopWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   borderWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-}
+};
 
 export const propAliases = {
   border: ['borderBottom', 'borderLeft', 'borderRight', 'borderTop'],
@@ -46,140 +46,146 @@ export const propAliases = {
     'borderRightWidth',
     'borderTopWidth'
   ]
-}
+};
 
 interface Validators {
-  borderColor?: (value: string) => string | undefined
-  borderStyle?: (value: string) => string | undefined
-  borderWidth?: (value: string) => string | undefined
+  borderColor?: (value: string) => string | undefined;
+  borderStyle?: (value: string) => string | undefined;
+  borderWidth?: (value: string) => string | undefined;
 }
 
-export const propValidators: Validators = { }
+export const propValidators: Validators = {};
 
 if (process.env.NODE_ENV !== 'production') {
-  propValidators.borderColor = (value: string) => {
+  propValidators.borderColor = (value: string): string | undefined => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “borderColor”. Use “borderBottomColor”, “borderLeftColor” “borderRightColor” and “borderTopColor” instead.`
+      return `multiple values (“${value}”) aren՚t supported with “borderColor”. Use “borderBottomColor”, “borderLeftColor” “borderRightColor” and “borderTopColor” instead.`;
     }
 
-    return
-  }
-  propValidators.borderStyle = (value: string) => {
+    return;
+  };
+  propValidators.borderStyle = (value: string): string | undefined => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “borderStyle”. Use “borderBottomStyle”, “borderLeftStyle” “borderRightStyle” and “borderTopStyle” instead.`
+      return `multiple values (“${value}”) aren՚t supported with “borderStyle”. Use “borderBottomStyle”, “borderLeftStyle” “borderRightStyle” and “borderTopStyle” instead.`;
     }
 
-    return
-  }
-  propValidators.borderWidth = (value: string) => {
+    return;
+  };
+  propValidators.borderWidth = (value: string): string | undefined => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “borderWidth”. Use “borderBottomWidth”, “borderLeftWidth” “borderRightWidth” and “borderTopWidth” instead.`
+      return `multiple values (“${value}”) aren՚t supported with “borderWidth”. Use “borderBottomWidth”, “borderLeftWidth” “borderRightWidth” and “borderTopWidth” instead.`;
     }
 
-    return
-  }
+    return;
+  };
 }
 
 const borderLeft = {
   className: 'b-lft',
   cssName: 'border-left',
   jsName: 'borderLeft'
-}
+};
 const borderLeftColor = {
   className: 'b-lft-clr',
   cssName: 'border-left-color',
   jsName: 'borderLeftColor'
-}
+};
 const borderLeftStyle = {
   className: 'b-lft-stl',
   cssName: 'border-left-style',
   jsName: 'borderLeftStyle',
   safeValue: true
-}
+};
 const borderLeftWidth = {
   className: 'b-lft-wdt',
   cssName: 'border-left-width',
   jsName: 'borderLeftWidth'
-}
+};
 const borderRight = {
   className: 'b-rgt',
   cssName: 'border-right',
   jsName: 'borderRight'
-}
+};
 const borderRightColor = {
   className: 'b-rgt-clr',
   cssName: 'border-right-color',
   jsName: 'borderRightColor'
-}
+};
 const borderRightStyle = {
   className: 'b-rgt-stl',
   cssName: 'border-right-style',
   jsName: 'borderRightStyle',
   safeValue: true
-}
+};
 const borderRightWidth = {
   className: 'b-rgt-wdt',
   cssName: 'border-right-width',
   jsName: 'borderRightWidth'
-}
+};
 const borderTop = {
   className: 'b-top',
   cssName: 'border-top',
   jsName: 'borderTop'
-}
+};
 const borderTopColor = {
   className: 'b-top-clr',
   cssName: 'border-top-color',
   jsName: 'borderTopColor'
-}
+};
 const borderTopStyle = {
   className: 'b-top-stl',
   cssName: 'border-top-style',
   jsName: 'borderTopStyle',
   safeValue: true
-}
+};
 const borderTopWidth = {
   className: 'b-top-wdt',
   cssName: 'border-top-width',
   jsName: 'borderTopWidth'
-}
+};
 const borderBottom = {
   className: 'b-btm',
   cssName: 'border-bottom',
   jsName: 'borderBottom'
-}
+};
 const borderBottomColor = {
   className: 'b-btm-clr',
   cssName: 'border-bottom-color',
   jsName: 'borderBottomColor'
-}
+};
 const borderBottomStyle = {
   className: 'b-btm-stl',
   cssName: 'border-bottom-style',
   jsName: 'borderBottomStyle',
   safeValue: true
-}
+};
 const borderBottomWidth = {
   className: 'b-btm-wdt',
   cssName: 'border-bottom-width',
   jsName: 'borderBottomWidth'
-}
+};
 
 export const propEnhancers = {
-  borderBottom: (value: ValueType) => getCss(borderBottom, value),
-  borderBottomColor: (value: ValueType) => getCss(borderBottomColor, value),
-  borderBottomStyle: (value: ValueType) => getCss(borderBottomStyle, value),
-  borderBottomWidth: (value: ValueType) => getCss(borderBottomWidth, value),
-  borderLeft: (value: ValueType) => getCss(borderLeft, value),
-  borderLeftColor: (value: ValueType) => getCss(borderLeftColor, value),
-  borderLeftStyle: (value: ValueType) => getCss(borderLeftStyle, value),
-  borderLeftWidth: (value: ValueType) => getCss(borderLeftWidth, value),
-  borderRight: (value: ValueType) => getCss(borderRight, value),
-  borderRightColor: (value: ValueType) => getCss(borderRightColor, value),
-  borderRightStyle: (value: ValueType) => getCss(borderRightStyle, value),
-  borderRightWidth: (value: ValueType) => getCss(borderRightWidth, value),
-  borderTop: (value: ValueType) => getCss(borderTop, value),
-  borderTopColor: (value: ValueType) => getCss(borderTopColor, value),
-  borderTopStyle: (value: ValueType) => getCss(borderTopStyle, value),
-  borderTopWidth: (value: ValueType) => getCss(borderTopWidth, value)
-}
+  borderBottom: (value: ValueType): GetCSS => getCss(borderBottom, value),
+  borderBottomColor: (value: ValueType): GetCSS =>
+    getCss(borderBottomColor, value),
+  borderBottomStyle: (value: ValueType): GetCSS =>
+    getCss(borderBottomStyle, value),
+  borderBottomWidth: (value: ValueType): GetCSS =>
+    getCss(borderBottomWidth, value),
+  borderLeft: (value: ValueType): GetCSS => getCss(borderLeft, value),
+  borderLeftColor: (value: ValueType): GetCSS => getCss(borderLeftColor, value),
+  borderLeftStyle: (value: ValueType): GetCSS => getCss(borderLeftStyle, value),
+  borderLeftWidth: (value: ValueType): GetCSS => getCss(borderLeftWidth, value),
+  borderRight: (value: ValueType): GetCSS => getCss(borderRight, value),
+  borderRightColor: (value: ValueType): GetCSS =>
+    getCss(borderRightColor, value),
+  borderRightStyle: (value: ValueType): GetCSS =>
+    getCss(borderRightStyle, value),
+  borderRightWidth: (value: ValueType): GetCSS =>
+    getCss(borderRightWidth, value),
+  borderTop: (value: ValueType): GetCSS => getCss(borderTop, value),
+  borderTopColor: (value: ValueType): GetCSS => getCss(borderTopColor, value),
+  borderTopStyle: (value: ValueType): GetCSS => getCss(borderTopStyle, value),
+  borderTopWidth: (value: ValueType): GetCSS => getCss(borderTopWidth, value)
+};

@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import Box from '../src';
-import allPropertiesComponent from './all-properties-component';
+import { storiesOf } from '@storybook/react'
+import * as React from 'react'
+import Box, { MediaQueryProvider } from '../src'
+import allPropertiesComponent from './all-properties-component'
 
 const RedBox = redBoxProps => (
   <Box
@@ -11,12 +11,12 @@ const RedBox = redBoxProps => (
     margin="20px"
     {...redBoxProps}
   />
-);
+)
 
-const logRef = ref => console.log(ref);
+const logRef = ref => console.log(ref)
 
 interface CustomProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 const CustomComp: React.SFC<CustomProps> = props => {
   return (
@@ -24,8 +24,8 @@ const CustomComp: React.SFC<CustomProps> = props => {
       <Box is="h1">custom component</Box>
       {props.children}
     </div>
-  );
-};
+  )
+}
 
 storiesOf('Box', module)
   .add(`is=''`, () => (
@@ -162,7 +162,11 @@ storiesOf('Box', module)
   .add('css', () => (
     <Box>
       <Box
-        css={{ backgroundColor: 'red', ':hover': { backgroundColor: 'red' } }}
+        css={{
+          backgroundColor: 'red',
+          ':hover': { backgroundColor: 'blue' },
+          ':active': { backgroundColor: 'green' }
+        }}
       >
         css
       </Box>
@@ -183,4 +187,54 @@ storiesOf('Box', module)
     <Box>
       <RedBox marginLeft="5px" />
     </Box>
-  ));
+  ))
+  .add('media queries', () => (
+    <MediaQueryProvider
+      value={[
+        '@media(max-width: 768px)',
+        '@media(max-width: 480px)',
+        '@media(max-width: 360px)'
+      ]}
+    >
+      <Box
+        transition="1s"
+        backgroundColor={['yellow', 'orange', 'teal', 'brown']}
+        width={[400, 300, 200, 100]}
+        height={[400, 300, 200, 100]}
+        css={{
+          '::before': {
+            content: ['"default"', '"tablet"', '"smartphone"', '"small phone"']
+          }
+        }}
+      />
+      <Box
+        marginTop={24}
+        transition="1s"
+        backgroundColor={['purple', 'red', 'blue', 'green']}
+        width={[400, 300, 200, 100]}
+        height={[400, 300, 200, 100]}
+        css={{
+          '::before': {
+            content: ['"default"', '"tablet"', '"smartphone"', '"small phone"']
+          }
+        }}
+      />
+    </MediaQueryProvider>
+  ))
+  .add('pseudo queries', () => (
+    <MediaQueryProvider value={[':hover']}>
+      <Box
+        transition="300ms"
+        width={400}
+        height={400}
+        boxShadow={['0 1px 3px rgba(0,0,0,0.12)', '0 3px 5px rgba(0,0,0,0.18)']}
+      />
+      <Box
+        marginTop={24}
+        transition="300ms"
+        width={400}
+        height={400}
+        boxShadow={['0 1px 3px rgba(0,0,0,0.12)', '0 3px 5px rgba(0,0,0,0.18)']}
+      />
+    </MediaQueryProvider>
+  ))

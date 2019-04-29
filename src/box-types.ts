@@ -1,13 +1,19 @@
-import {ReactNode, Component} from 'react'
-import * as CSS from 'csstype'
+import { BoxSizingProperty, Properties } from 'csstype'
+import { Component, ReactNode } from 'react'
 
 type UIBoxProp = string | number | boolean | null | undefined
-export type CSSProps = CSS.StandardProperties<number | string | boolean>
+export type Falsey<T> = { [P in keyof T]?: T[P] | T[P][] | false | null }
+interface BoxPropsAugmented
+  extends Falsey<
+    Properties<string | number | boolean | string[] | number[] | boolean[]>
+  > {}
 
-interface BoxPropsBase extends CSSProps {
+interface BoxPropsBase extends BoxPropsAugmented {
   is?: string | React.ComponentClass | React.FunctionComponent
 
   className?: string
+
+  breakpoints?: string[]
 
   marginX?: UIBoxProp
 
@@ -29,7 +35,7 @@ interface BoxPropsBase extends CSSProps {
 }
 
 export type BoxProps = BoxPropsBase & {
-  boxSizing?: CSS.BoxSizingProperty | UIBoxProp;
+  boxSizing?: BoxSizingProperty | UIBoxProp
 }
 
 export type Box = Component<BoxProps>
