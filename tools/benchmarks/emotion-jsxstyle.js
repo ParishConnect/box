@@ -1,9 +1,9 @@
-import {Box} from 'emotion-jsxstyle'
+import {View} from '@emotion/primitives'
 import React from 'react'
 
 export default function benchmark() {
   return (
-    <Box
+    <View
       component="div"
       contentEditable // Test prop pass through
       alignContent="center"

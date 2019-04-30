@@ -38,5 +38,5 @@ export default function getClassName(
     valueKey = getSafeValue(value)
   }
 
-  return `al-${className}_${valueKey}`
+  return `✟-${className}_${valueKey}`
 }

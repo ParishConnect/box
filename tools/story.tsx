@@ -224,17 +224,23 @@ storiesOf('Box', module)
   .add('pseudo queries', () => (
     <MediaQueryProvider value={[':hover']}>
       <Box
-        transition="300ms"
+        transition="0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550)"
+        transform={['scale(1)', 'scale(0.75)']}
         width={400}
         height={400}
-        boxShadow={['0 1px 3px rgba(0,0,0,0.12)', '0 3px 5px rgba(0,0,0,0.18)']}
+        borderRadius={[0, 500]}
+        backgroundColor={['red', 'blue']}
       />
       <Box
         marginTop={24}
-        transition="300ms"
-        width={400}
-        height={400}
-        boxShadow={['0 1px 3px rgba(0,0,0,0.12)', '0 3px 5px rgba(0,0,0,0.18)']}
+        transition="2s cubic-bezier(0.680, -0.550, 0.265, 1.550)"
+        transform={['', 'scale(1.5)']}
+        transformOrigin="top left"
+        width={300}
+        height={300}
+        borderRadius={[500, 0]}
+        background="linear-gradient(rgba(255,100,100,1), rgba(0,100,255,1)), url(https://picsum.photos/500/500)"
+        backgroundBlendMode="overlay"
       />
     </MediaQueryProvider>
   ))

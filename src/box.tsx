@@ -28,7 +28,7 @@ class Box extends React.Component<BoxProps, {}> {
       parsedProps.ref = this.ref
     }
 
-    if (Object.keys(mqCSS).length > 0) {
+    if (Object.keys(mqCSS) || css) {
       const mergedCSS = { ...css, ...mqCSS }
       // Add emotion class
       return React.createElement(
