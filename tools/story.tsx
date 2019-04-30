@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import Box, { MediaQueryProvider } from '../src'
+import Box, { css, MediaQueryProvider } from '../src'
 import allPropertiesComponent from './all-properties-component'
 
 const RedBox = redBoxProps => (
@@ -164,6 +164,7 @@ storiesOf('Box', module)
   .add('css', () => (
     <Box>
       <Box
+        className={css({ '::before': { content: '"something"' } })}
         css={{
           backgroundColor: 'red',
           ':hover': { backgroundColor: 'blue' },
