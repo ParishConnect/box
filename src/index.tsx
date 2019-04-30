@@ -1,7 +1,7 @@
 import * as cache from './cache'
 import * as styles from './styles'
 
-export { css } from '@emotion/core'
+export { css } from 'emotion'
 export { default } from './box'
 export { Box as BoxType, BoxProps } from './box-types'
 export {

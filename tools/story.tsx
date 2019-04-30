@@ -21,7 +21,9 @@ interface CustomProps {
 const CustomComp: React.SFC<CustomProps> = props => {
   return (
     <div>
-      <Box is="h1">custom component</Box>
+      <Box backgroundColor="teal" is="h1">
+        custom component
+      </Box>
       {props.children}
     </div>
   )
@@ -41,7 +43,7 @@ storiesOf('Box', module)
   .add(`custom comp`, () => (
     <Box>
       <Box is={CustomComp}>
-        <Box>chiiillld</Box>
+        <Box color="red">chiiillld</Box>
       </Box>
     </Box>
   ))
@@ -230,7 +232,19 @@ storiesOf('Box', module)
         height={400}
         borderRadius={[0, 500]}
         backgroundColor={['red', 'blue']}
-      />
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Box
+          background="white"
+          height={[50, 40]}
+          width={[50, 40]}
+          css={{ color: 'red' }}
+        >
+          Child
+        </Box>
+      </Box>
       <Box
         marginTop={24}
         transition="2s cubic-bezier(0.680, -0.550, 0.265, 1.550)"

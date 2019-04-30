@@ -1,4 +1,4 @@
-import { ClassNames } from '@emotion/core'
+import { css as ecss, cx } from 'emotion'
 import facepaint from 'facepaint'
 import * as React from 'react'
 import { BoxProps } from './box-types'
@@ -28,8 +28,10 @@ class Box extends React.Component<BoxProps, {}> {
       parsedProps.ref = this.ref
     }
 
-    if (Object.keys(mqCSS) || css) {
+    if (css || Object.getOwnPropertyNames(mqCSS).length > 0) {
       const mergedCSS = { ...css, ...mqCSS }
+      console.log(mergedCSS)
+
       // Add emotion class
       return React.createElement(
         MediaQueryConsumer,
@@ -37,16 +39,16 @@ class Box extends React.Component<BoxProps, {}> {
         (breakpoints: string[]) => {
           const mq = facepaint(breakpoints)
 
-          return React.createElement(ClassNames, null, ({ css: ecss, cx }) =>
-            React.createElement(
-              is,
-              { className: cx(className, ecss(mq(mergedCSS))), ...parsedProps },
-              children
-            )
+          return React.createElement(
+            is,
+            { className: cx(className, ecss(mq(mergedCSS))), ...parsedProps },
+            children
           )
         }
       )
     }
+
+    parsedProps.className = className
     return React.createElement(is, parsedProps, children)
   }
 }
