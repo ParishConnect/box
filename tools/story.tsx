@@ -13,7 +13,13 @@ const RedBox = redBoxProps => (
   />
 )
 
-const logRef = ref => console.log(ref)
+const logRef = ref => {
+  if (ref) {
+    console.log(ref)
+  } else {
+    console.log('none')
+  }
+}
 
 interface CustomProps {
   children: React.ReactNode
@@ -158,7 +164,7 @@ storiesOf('Box', module)
   ))
   .add('innerRef', () => (
     <Box>
-      <Box innerRef={logRef}>innerRef</Box>
+      <Box ref={logRef}>innerRef</Box>
     </Box>
   ))
   .add('css', () => (

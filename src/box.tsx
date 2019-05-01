@@ -13,19 +13,13 @@ class Box extends React.Component<BoxProps, {}> {
     boxSizing: 'border-box'
   }
 
-  ref = React.createRef()
-
   render() {
     const { is = 'div', css, innerRef, children, ...props } = this.props
     // Convert the CSS props to class names (and inject the styles)
     const { className, enhancedProps: parsedProps, mqCSS } = enhanceProps(props)
 
     if (innerRef) {
-      parsedProps.ref = (node: React.ReactNode) => {
-        innerRef(node)
-      }
-
-      parsedProps.ref = this.ref
+      parsedProps.ref = innerRef
     }
 
     if (css || Object.getOwnPropertyNames(mqCSS).length > 0) {
