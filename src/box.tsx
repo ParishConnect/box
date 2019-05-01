@@ -20,8 +20,6 @@ class Box extends React.Component<BoxProps, {}> {
     // Convert the CSS props to class names (and inject the styles)
     const { className, enhancedProps: parsedProps, mqCSS } = enhanceProps(props)
 
-    console.log(className)
-
     if (innerRef) {
       parsedProps.ref = (node: React.ReactNode) => {
         innerRef(node)
