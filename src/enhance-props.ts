@@ -6,8 +6,6 @@ import { Without } from "./types/box-types";
 import { EnhancerProps } from "./types/enhancers";
 import facepaint from "facepaint";
 import valueToString from "./value-to-string";
-import { useContext } from "react";
-import MediaQueryContext from "./utils/media-query-context";
 
 type PreservedProps = Without<React.ComponentProps<any>, keyof EnhancerProps>;
 
@@ -19,9 +17,8 @@ interface EnhancedPropsResult {
 /**
  * Converts the CSS props to class names and inserts the styles.
  */
-export default function enhanceProps(rawProps: EnhancerProps & React.ComponentPropsWithoutRef<any>): EnhancedPropsResult {
+export default function enhanceProps(rawProps: EnhancerProps & React.ComponentPropsWithoutRef<any>, mqContext?: any): EnhancedPropsResult {
   const propsMap = expandAliases(rawProps);
-  const mqContext = useContext(MediaQueryContext);
 
   const mq = facepaint(mqContext);
 

@@ -10,7 +10,7 @@ export function get(property: string, value: CacheValue) {
 export function set(property: string, value: CacheValue | object, className: string) {
   if (process.env.NODE_ENV !== "production") {
     const valueType = typeof value;
-    if (valueType !== "boolean" && valueType !== "number" && valueType !== "string" && valueType !== "object") {
+    if (valueType !== "boolean" && valueType !== "number" && valueType !== "string") {
       const encodedValue = JSON.stringify(value);
       throw new TypeError(`parishconnect-box: invalid cache value “${encodedValue}”. Only booleans, numbers and strings are supported.`);
     }
