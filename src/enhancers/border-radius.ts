@@ -1,9 +1,9 @@
-import * as PropTypes from 'prop-types';
-import getCss, { GetCSS } from '../get-css';
-import { spacesOutsideParentheses } from '../utils/regex';
-import { PropEncharValueType as ValueType } from './types';
+import PropTypes from 'prop-types'
+import getCss from '../get-css'
+import {spacesOutsideParentheses} from '../utils/regex'
+import { PropEnhancerValueType, PropValidators, PropEnhancers, PropTypesMapping } from '../types/enhancers'
 
-export const propTypes = {
+export const propTypes: PropTypesMapping = {
   borderBottomLeftRadius: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
@@ -21,7 +21,7 @@ export const propTypes = {
     PropTypes.string,
     PropTypes.number
   ])
-};
+}
 
 export const propAliases = {
   borderRadius: [
@@ -30,51 +30,44 @@ export const propAliases = {
     'borderTopLeftRadius',
     'borderTopRightRadius'
   ]
-};
-
-interface Validators {
-  borderRadius?: (value: string) => string | undefined;
 }
-export const propValidators: Validators = {};
+
+export const propValidators: PropValidators = {}
 
 if (process.env.NODE_ENV !== 'production') {
-  propValidators.borderRadius = (value: string): string | undefined => {
+  propValidators.borderRadius = value => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “borderRadius”. Use “borderBottomLeftRadius”, “borderBottomRightRadius” “borderTopLeftRadius” and “borderTopRightRadius” instead.`;
+      return `multiple values (“${value}”) aren՚t supported with “borderRadius”. Use “borderBottomLeftRadius”, “borderBottomRightRadius” “borderTopLeftRadius” and “borderTopRightRadius” instead.`
     }
 
-    return;
-  };
+    return
+  }
 }
 
 const borderTopLeftRadius = {
   className: 'btlr',
   cssName: 'border-top-left-radius',
   jsName: 'borderTopLeftRadius'
-};
+}
 const borderTopRightRadius = {
   className: 'btrr',
   cssName: 'border-top-right-radius',
   jsName: 'borderTopRightRadius'
-};
+}
 const borderBottomLeftRadius = {
   className: 'bblr',
   cssName: 'border-bottom-left-radius',
   jsName: 'borderBottomLeftRadius'
-};
+}
 const borderBottomRightRadius = {
   className: 'bbrr',
   cssName: 'border-bottom-right-radius',
   jsName: 'borderBottomRightRadius'
-};
+}
 
-export const propEnhancers = {
-  borderBottomLeftRadius: (value: ValueType): GetCSS =>
-    getCss(borderBottomLeftRadius, value),
-  borderBottomRightRadius: (value: ValueType): GetCSS =>
-    getCss(borderBottomRightRadius, value),
-  borderTopLeftRadius: (value: ValueType): GetCSS =>
-    getCss(borderTopLeftRadius, value),
-  borderTopRightRadius: (value: ValueType): GetCSS =>
-    getCss(borderTopRightRadius, value)
-};
+export const propEnhancers: PropEnhancers = {
+  borderBottomLeftRadius: (value: PropEnhancerValueType) => getCss(borderBottomLeftRadius, value),
+  borderBottomRightRadius: (value: PropEnhancerValueType) => getCss(borderBottomRightRadius, value),
+  borderTopLeftRadius: (value: PropEnhancerValueType) => getCss(borderTopLeftRadius, value),
+  borderTopRightRadius: (value: PropEnhancerValueType) => getCss(borderTopRightRadius, value)
+}

@@ -1,22 +1,22 @@
-import * as PropTypes from 'prop-types';
-import getCss, { GetCSS } from '../get-css';
-import { PropEncharValueType as ValueType } from './types';
+import PropTypes from 'prop-types'
+import getCss from '../get-css'
+import { PropEnhancerValueType, PropValidators, PropEnhancers, PropTypesMapping, PropAliases } from '../types/enhancers'
 
-export const propTypes = {
+export const propTypes: PropTypesMapping = {
   opacity: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+}
 
-export const propAliases = {};
+export const propAliases: PropAliases = {}
 
-export const propValidators = {};
+export const propValidators: PropValidators = {}
 
 const opacity = {
   className: 'opct',
   cssName: 'opacity',
   jsName: 'opacity',
   defaultUnit: ''
-};
+}
 
-export const propEnhancers = {
-  opacity: (value: ValueType): GetCSS => getCss(opacity, value)
-};
+export const propEnhancers: PropEnhancers = {
+  opacity: (value: PropEnhancerValueType) => getCss(opacity, value)
+}

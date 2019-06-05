@@ -1,12 +1,12 @@
 import test from 'ava'
-import { shallow } from 'enzyme'
-import * as React from 'react'
+import React from 'react'
 import * as render from 'react-test-renderer'
+import {shallow} from 'enzyme'
 import * as sinon from 'sinon'
 import Box from '../src/box'
-import { propNames } from '../src/enhancers'
 import * as styles from '../src/styles'
 import allPropertiesComponent from '../tools/all-properties-component'
+import {propNames} from '../src/enhancers'
 
 test.afterEach.always(() => {
   styles.clear()
@@ -24,6 +24,7 @@ test.serial('all properties set to inherit', t => {
   for (const name of propNames) {
     properties[name] = 'inherit'
   }
+
   delete properties.clearfix // Non-css property
   const component = <Box {...properties} />
   shallow(component)
@@ -35,6 +36,7 @@ test.serial('all properties set to initial', t => {
   for (const name of propNames) {
     properties[name] = 'initial'
   }
+
   delete properties.clearfix // Non-css property
   const component = <Box {...properties} />
   shallow(component)
@@ -50,17 +52,13 @@ test('is prop allows changing the component type', t => {
   function TestComponent(props) {
     return <h1 {...props} />
   }
+
   const component = shallow(<Box is={TestComponent} />)
   t.true(component.is(TestComponent))
 })
 
-test('css prop renders a glamor class', t => {
-  const component = shallow(<Box css={{ height: '10px' }} />)
-  t.true(component.hasClass('css-882mhe'))
-})
-
 test('innerRef prop gets passed the ref', t => {
-  const node = { domNode: true }
+  const node = {domNode: true}
   const innerRef = sinon.spy()
   render.create(<Box innerRef={innerRef} />, {
     createNodeMock() {
@@ -82,10 +80,5 @@ test('renders children', t => {
 
 test('maintains the original className', t => {
   const component = shallow(<Box className="derp" margin="10px" />)
-  t.true(component.hasClass('derp'))
-})
-
-test('maintains the original className when the css prop is used', t => {
-  const component = shallow(<Box className="derp" css={{ margin: '10px' }} />)
   t.true(component.hasClass('derp'))
 })

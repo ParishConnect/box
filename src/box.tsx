@@ -1,47 +1,44 @@
-import { css as ecss } from 'emotion'
-import facepaint from 'facepaint'
-import * as React from 'react'
-import { BoxProps } from './box-types'
+import React from 'react'
+import PropTypes from 'prop-types'
+import {Is, BoxProps, BoxComponent} from './types/box-types'
+import {propTypes} from './enhancers'
 import enhanceProps from './enhance-props'
-import { MediaQueryConsumer } from './media-query-context'
 
-class Box extends React.Component<BoxProps, {}> {
-  static defaultProps = {
-    css: null,
-    innerRef: null,
-    is: 'div',
-    boxSizing: 'border-box'
-  }
+type Options<T extends Is> = {
+  is: T
+}
 
-  render() {
-    const { is = 'div', css, innerRef, children, ...props } = this.props
+function createComponent<T extends Is>({ is: defaultIs }: Options<T>) {
+  const Component: BoxComponent<T> = ({ is = defaultIs, innerRef, children, ...props }: BoxProps<T>) => {
     // Convert the CSS props to class names (and inject the styles)
-    const { className, enhancedProps: parsedProps, mqCSS } = enhanceProps(props)
+    const {className, enhancedProps: parsedProps} = enhanceProps(props)
+
+    parsedProps.className = className
 
     if (innerRef) {
       parsedProps.ref = innerRef
     }
 
-    if (css || Object.getOwnPropertyNames(mqCSS).length > 0) {
-      // Add emotion class
-      return React.createElement(
-        MediaQueryConsumer,
-        null,
-        (breakpoints: string[]) => {
-          const mq = facepaint(breakpoints)
-          parsedProps.className = `${className} ${ecss(
-            css,
-            mq(mqCSS)
-          ).toString()}`
-
-          return React.createElement(is, parsedProps, children)
-        }
-      )
-    }
-
-    parsedProps.className = className
     return React.createElement(is, parsedProps, children)
   }
+
+  ;(Component as any).displayName = 'Box'
+
+  ;(Component as any).propTypes = {
+    ...propTypes,
+    innerRef: PropTypes.func,
+    is: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+  }
+
+  ;(Component as any).defaultProps = {
+    innerRef: null,
+    is: 'div',
+    boxSizing: 'border-box'
+  }
+
+  return Component
 }
+
+const Box = createComponent({ is: 'div' })
 
 export default Box

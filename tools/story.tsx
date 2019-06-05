@@ -1,35 +1,19 @@
-import { storiesOf } from '@storybook/react'
-import * as React from 'react'
-import Box, { css, MediaQueryProvider } from '../src'
+import React from 'react'
+import Box from '../src'
+import {storiesOf} from '@storybook/react'
 import allPropertiesComponent from './all-properties-component'
 
 const RedBox = redBoxProps => (
-  <Box
-    background="red"
-    width="100px"
-    height="100px"
-    margin="20px"
-    {...redBoxProps}
-  />
+  <Box background="red" width="100px" height="100px" margin="20px" {...redBoxProps} />
 )
 
-const logRef = ref => {
-  if (ref) {
-    console.log(ref)
-  } else {
-    console.log('none')
-  }
-}
+const logRef = ref => console.log(ref)
 
-interface CustomProps {
-  children: React.ReactNode
-}
-const CustomComp: React.SFC<CustomProps> = props => {
+interface CustomProps { children: React.ReactNode }
+const CustomComp: React.FunctionComponent<CustomProps> = props => {
   return (
     <div>
-      <Box backgroundColor="teal" is="h1">
-        custom component
-      </Box>
+      <Box is="h1">custom component</Box>
       {props.children}
     </div>
   )
@@ -49,7 +33,7 @@ storiesOf('Box', module)
   .add(`custom comp`, () => (
     <Box>
       <Box is={CustomComp}>
-        <Box color="red">chiiillld</Box>
+        <Box>chiiillld</Box>
       </Box>
     </Box>
   ))
@@ -164,21 +148,7 @@ storiesOf('Box', module)
   ))
   .add('innerRef', () => (
     <Box>
-      <Box ref={logRef}>innerRef</Box>
-    </Box>
-  ))
-  .add('css', () => (
-    <Box>
-      <Box
-        className={css({ '::before': { content: '"something"' } })}
-        css={{
-          backgroundColor: 'red',
-          ':hover': { backgroundColor: 'blue' },
-          ':active': { backgroundColor: 'green' }
-        }}
-      >
-        css
-      </Box>
+      <Box innerRef={logRef}>innerRef</Box>
     </Box>
   ))
   .add('props pass through', () => (
@@ -196,72 +166,4 @@ storiesOf('Box', module)
     <Box>
       <RedBox marginLeft="5px" />
     </Box>
-  ))
-  .add('media queries', () => (
-    <MediaQueryProvider
-      value={[
-        '@media(max-width: 768px)',
-        '@media(max-width: 480px)',
-        '@media(max-width: 360px)'
-      ]}
-    >
-      <Box
-        transition="1s"
-        backgroundColor={['yellow', 'orange', 'teal', 'brown']}
-        width={[400, 300, 200, 100]}
-        height={[400, 300, 200, 100]}
-        css={{
-          '::before': {
-            content: ['"default"', '"tablet"', '"smartphone"', '"small phone"']
-          }
-        }}
-      />
-      <Box
-        marginTop={24}
-        transition="1s"
-        backgroundColor={['purple', 'red', 'blue', 'green']}
-        width={[400, 300, 200, 100]}
-        height={[400, 300, 200, 100]}
-        css={{
-          '::before': {
-            content: ['"default"', '"tablet"', '"smartphone"', '"small phone"']
-          }
-        }}
-      />
-    </MediaQueryProvider>
-  ))
-  .add('pseudo queries', () => (
-    <MediaQueryProvider value={[':hover']}>
-      <Box
-        transition="0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550)"
-        transform={['scale(1)', 'scale(0.75)']}
-        width={400}
-        height={400}
-        borderRadius={[0, 500]}
-        backgroundColor={['red', 'blue']}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Box
-          background="white"
-          height={[50, 40]}
-          width={[50, 40]}
-          css={{ color: 'red' }}
-        >
-          Child
-        </Box>
-      </Box>
-      <Box
-        marginTop={24}
-        transition="2s cubic-bezier(0.680, -0.550, 0.265, 1.550)"
-        transform={['', 'scale(1.5)']}
-        transformOrigin="top left"
-        width={300}
-        height={300}
-        borderRadius={[500, 0]}
-        background="linear-gradient(rgba(255,100,100,1), rgba(0,100,255,1)), url(https://picsum.photos/500/500)"
-        backgroundBlendMode="overlay"
-      />
-    </MediaQueryProvider>
   ))

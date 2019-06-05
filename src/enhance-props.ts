@@ -1,31 +1,26 @@
-import { BoxProps } from './box-types'
-import * as cache from './cache'
-import { propEnhancers } from './enhancers'
+import {propEnhancers} from './enhancers'
 import expandAliases from './expand-aliases'
+import * as cache from './cache'
 import * as styles from './styles'
+import {Without} from './types/box-types'
+import {EnhancerProps} from './types/enhancers'
+
+type PreservedProps = Without<React.ComponentProps<any>, keyof EnhancerProps>
 
 interface EnhancedPropsResult {
-  mqCSS: Partial<BoxProps>
   className: string
-  enhancedProps: Partial<BoxProps>
+  enhancedProps: PreservedProps
 }
+
 /**
  * Converts the CSS props to class names and inserts the styles.
  */
-export default function enhanceProps(
-  rawProps: Partial<BoxProps>
-): EnhancedPropsResult {
+export default function enhanceProps(rawProps: EnhancerProps & React.ComponentPropsWithoutRef<any>): EnhancedPropsResult {
   const propsMap = expandAliases(rawProps)
-  const enhancedProps = {}
-  const mqCSS = {}
+  const preservedProps: PreservedProps = {}
   let className = rawProps.className || ''
 
   for (const [propName, propValue] of propsMap) {
-    if (Array.isArray(propValue)) {
-      mqCSS[propName] = propValue
-      continue
-    }
-
     const cachedClassName = cache.get(propName, propValue)
     if (cachedClassName) {
       className = `${className} ${cachedClassName}`
@@ -40,11 +35,9 @@ export default function enhanceProps(
       (propValue === null || propValue === undefined || propValue === false)
     ) {
       continue
-    }
-
-    if (!enhancer) {
+    } else if (!enhancer) {
       // Pass through native props. e.g: disabled, value, type
-      enhancedProps[propName] = propValue
+      preservedProps[propName] = propValue
       continue
     }
 
@@ -59,5 +52,5 @@ export default function enhanceProps(
 
   className = className.trim()
 
-  return { className, enhancedProps, mqCSS }
+  return {className, enhancedProps: preservedProps}
 }
