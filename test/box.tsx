@@ -5,7 +5,6 @@ import { shallow } from "enzyme";
 import * as sinon from "sinon";
 import Box from "../src/box";
 import * as styles from "../src/styles";
-import allPropertiesComponent from "../tools/all-properties-component";
 import { propNames } from "../src/enhancers";
 
 test.afterEach.always(() => {
