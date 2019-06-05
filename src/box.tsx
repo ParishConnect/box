@@ -1,6 +1,8 @@
 import React from "react";
 import { Is, BoxProps, BoxComponent } from "./types/box-types";
 import enhanceProps from "./enhance-props";
+import { propTypes } from "./enhancers/list";
+import PropTypes from "prop-types";
 
 type Options<T extends Is> = {
   is: T;
@@ -20,11 +22,11 @@ function createComponent<T extends Is>({ is: defaultIs }: Options<T>) {
     return React.createElement(is, parsedProps, children);
   };
   (Component as any).displayName = "Box";
-  // (Component as any).propTypes = {
-  //   ...propTypes,
-  //   innerRef: PropTypes.func,
-  //   is: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-  // };
+  (Component as any).propTypes = {
+    ...propTypes,
+    innerRef: PropTypes.func,
+    is: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+  };
   (Component as any).defaultProps = {
     innerRef: null,
     is: "div",

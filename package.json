@@ -4,7 +4,7 @@
   "description": "Blazing Fast React UI Primitive",
   "contributors": [],
   "repository": "@parishconnect/box",
-  "license": "PCLL",
+  "license": "CC-BY-NC-ND-4.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
