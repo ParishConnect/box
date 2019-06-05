@@ -1,19 +1,10 @@
 {
-  "name": "ui-box",
-  "version": "2.1.0",
+  "name": "box",
+  "version": "1.2.0",
   "description": "Blazing Fast React UI Primitive",
-  "contributors": [
-    "Jeroen Ransijn (https://twitter.com/jeroen_ransijn)",
-    "Roland Warmerdam (https://roland.codes)",
-    "Meichen Zhou (https://github.com/jfmaggie)",
-    "Netto Farah (https://twitter.com/nettofarah)",
-    "Matt Shwery (https://github.com/mshwery)"
-  ],
-  "keywords": [
-    "react"
-  ],
-  "repository": "segmentio/ui-box",
-  "license": "MIT",
+  "contributors": [],
+  "repository": "@parishconnect/box",
+  "license": "PCLL",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -27,12 +18,13 @@
     "build": "tsc",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "release": "np --no-publish",
-    "benchmark": "echo ui-box && react-benchmark tools/benchmarks/box.js",
+    "benchmark": "echo box && react-benchmark tools/benchmarks/box.js",
     "size": "size-limit",
     "coverage": "nyc report --reporter=html"
   },
   "dependencies": {
     "@emotion/hash": "^0.7.1",
+    "facepaint": "^1.2.1",
     "inline-style-prefixer": "^5.0.4",
     "prop-types": "^15.7.2"
   },
@@ -44,6 +36,7 @@
     "@storybook/react": "^5.0.1",
     "@storybook/storybook-deployer": "^2.8.1",
     "@types/enzyme": "^3.9.1",
+    "@types/facepaint": "^1.2.0",
     "@types/inline-style-prefixer": "^5.0.0",
     "@types/prop-types": "^15.7.1",
     "@types/react": "^16.8.16",

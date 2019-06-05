@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "es6",
-    "module": "es2015",
+    "module": "commonjs",
     "lib": ["es2015", "es2016", "es2017", "es2018", "dom"],
     "declaration": true,
     "sourceMap": false,

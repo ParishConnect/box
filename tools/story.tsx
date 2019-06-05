@@ -1,25 +1,35 @@
-import React from 'react'
-import Box from '../src'
-import {storiesOf} from '@storybook/react'
-import allPropertiesComponent from './all-properties-component'
+import React from "react";
+import Box from "../src";
+import { storiesOf } from "@storybook/react";
+import allPropertiesComponent from "./all-properties-component";
 
-const RedBox = redBoxProps => (
-  <Box background="red" width="100px" height="100px" margin="20px" {...redBoxProps} />
-)
+const RedBox = (redBoxProps: any) => <Box background="red" width="100px" height="100px" margin="20px" {...redBoxProps} />;
 
-const logRef = ref => console.log(ref)
+const logRef = (ref: any) => console.log(ref);
 
-interface CustomProps { children: React.ReactNode }
+interface CustomProps {
+  children: React.ReactNode;
+}
 const CustomComp: React.FunctionComponent<CustomProps> = props => {
   return (
     <div>
       <Box is="h1">custom component</Box>
       {props.children}
     </div>
-  )
-}
+  );
+};
 
-storiesOf('Box', module)
+storiesOf("Box", module)
+  .add(`mq`, () => (
+    <Box>
+      <Box transition="3s" height={80} borderRadius={[null, null, 1000]} backgroundColor={["red", "green", "blue"]}>
+        Test
+      </Box>
+      <Box transition="3s" marginTop={16} height={80} backgroundColor={["red", "green", "blue"]}>
+        Test
+      </Box>
+    </Box>
+  ))
   .add(`is=''`, () => (
     <Box>
       <Box is="h1">h1</Box>
@@ -37,7 +47,7 @@ storiesOf('Box', module)
       </Box>
     </Box>
   ))
-  .add('background', () => (
+  .add("background", () => (
     <Box>
       <Box background="red" width="100px" height="100px" />
       <Box backgroundColor="blue" width="100px" height="100px" />
@@ -50,7 +60,7 @@ storiesOf('Box', module)
       />
     </Box>
   ))
-  .add('borderRadius', () => (
+  .add("borderRadius", () => (
     <Box>
       <RedBox borderRadius="5px" />
       <RedBox borderRadius="10px" borderTopRightRadius="50px" />
@@ -59,7 +69,7 @@ storiesOf('Box', module)
       <RedBox borderRadius="10px" borderBottomRightRadius="50px" />
     </Box>
   ))
-  .add('borders', () => (
+  .add("borders", () => (
     <Box>
       <RedBox border="10px solid grey" />
       <RedBox border="10px solid" borderColor="blue" />
@@ -71,12 +81,12 @@ storiesOf('Box', module)
       <RedBox borderLeft="10px solid grey" />
     </Box>
   ))
-  .add('boxShadow', () => (
+  .add("boxShadow", () => (
     <Box>
       <RedBox boxShadow="0 10px 40px black" />
     </Box>
   ))
-  .add('dimensions', () => (
+  .add("dimensions", () => (
     <Box>
       <RedBox />
       <RedBox minWidth="400px" />
@@ -85,13 +95,13 @@ storiesOf('Box', module)
       <RedBox minHeight={400} />
     </Box>
   ))
-  .add('display', () => (
+  .add("display", () => (
     <Box>
       <RedBox display="inline-block" />
       <RedBox display="inline">inline</RedBox>
     </Box>
   ))
-  .add('flex', () => (
+  .add("flex", () => (
     <Box>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <RedBox />
@@ -100,29 +110,24 @@ storiesOf('Box', module)
       </Box>
     </Box>
   ))
-  .add('overflow', () => (
+  .add("overflow", () => (
     <Box>
       <Box width="40px" height="40px" overflow="hidden">
         <RedBox />
       </Box>
     </Box>
   ))
-  .add('position', () => (
+  .add("position", () => (
     <Box>
       <RedBox position="absolute" left="10px" bottom="10px" />
     </Box>
   ))
-  .add('spacing', () => (
+  .add("spacing", () => (
     <Box>
-      <Box
-        backgroundColor="red"
-        width="100px"
-        height="100px"
-        marginTop="100px"
-      />
+      <Box backgroundColor="red" width="100px" height="100px" marginTop="100px" />
     </Box>
   ))
-  .add('text', () => (
+  .add("text", () => (
     <Box>
       <Box textAlign="center">Center</Box>
       <Box textAlign="right">Right</Box>
@@ -133,37 +138,37 @@ storiesOf('Box', module)
       <Box fontSize="72px">72px</Box>
     </Box>
   ))
-  .add('list', () => (
+  .add("list", () => (
     <Box is="ol" listStyleType="lower-greek">
       <Box is="li">I՚m</Box>
       <Box is="li">a</Box>
       <Box is="li">list</Box>
     </Box>
   ))
-  .add('utils', () => (
+  .add("utils", () => (
     <Box>
       <Box cursor="pointer">Center</Box>
       <Box boxSizing="border-box">boxSizing: border-box</Box>
     </Box>
   ))
-  .add('innerRef', () => (
+  .add("innerRef", () => (
     <Box>
       <Box innerRef={logRef}>innerRef</Box>
     </Box>
   ))
-  .add('props pass through', () => (
+  .add("props pass through", () => (
     <Box>
       <Box is="input" type="file" />
     </Box>
   ))
-  .add('all properties', () => (
+  .add("all properties", () => (
     <Box>
       {allPropertiesComponent()}
       {allPropertiesComponent()}
     </Box>
   ))
-  .add('overrides', () => (
+  .add("overrides", () => (
     <Box>
       <RedBox marginLeft="5px" />
     </Box>
-  ))
+  ));

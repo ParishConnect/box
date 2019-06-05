@@ -14,7 +14,7 @@
 	<br>
 </div>
 
-📦 ui-box is a low level CSS-in-JS solution that focuses on being simple, fast and extensible. All CSS properties are set using simple React props, which allows you to easily create reusable components that can be enhanced with additional CSS properties. This is very useful for adding things like margins to components, which would normally require adding non-reusable wrapper elements/classes.
+♱ ui-box is a low level CSS-in-JS solution that focuses on being simple, fast and extensible. All CSS properties are set using simple React props, which allows you to easily create reusable components that can be enhanced with additional CSS properties. This is very useful for adding things like margins to components, which would normally require adding non-reusable wrapper elements/classes.
 
 ## Install
 
