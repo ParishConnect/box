@@ -1,9 +1,9 @@
 {
-  "name": "box",
+  "name": "@parishconnect/box",
   "version": "1.2.0",
   "description": "Blazing Fast React UI Primitive",
   "contributors": [],
-  "repository": "@parishconnect/box",
+  "repository": "github.com/hennessyevan/box",
   "license": "CC-BY-NC-ND-4.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
