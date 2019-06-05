@@ -1,41 +1,35 @@
-import { storiesOf } from '@storybook/react'
-import * as React from 'react'
-import Box, { css, MediaQueryProvider } from '../src'
-import allPropertiesComponent from './all-properties-component'
+import React from "react";
+import Box from "../src";
+import { storiesOf } from "@storybook/react";
+import allPropertiesComponent from "./all-properties-component";
 
-const RedBox = redBoxProps => (
-  <Box
-    background="red"
-    width="100px"
-    height="100px"
-    margin="20px"
-    {...redBoxProps}
-  />
-)
+const RedBox = (redBoxProps: any) => <Box background="red" width="100px" height="100px" margin="20px" {...redBoxProps} />;
 
-const logRef = ref => {
-  if (ref) {
-    console.log(ref)
-  } else {
-    console.log('none')
-  }
-}
+const logRef = (ref: any) => console.log(ref);
 
 interface CustomProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
-const CustomComp: React.SFC<CustomProps> = props => {
+const CustomComp: React.FunctionComponent<CustomProps> = props => {
   return (
     <div>
-      <Box backgroundColor="teal" is="h1">
-        custom component
-      </Box>
+      <Box is="h1">custom component</Box>
       {props.children}
     </div>
-  )
-}
+  );
+};
 
-storiesOf('Box', module)
+storiesOf("Box", module)
+  .add(`mq`, () => (
+    <>
+      <Box transition="3s" height={80} borderRadius={[null, null, 1000]} backgroundColor={["red", "green", "blue", "yellow"]}>
+        Test
+      </Box>
+      <Box transition="3s" marginTop={16} height={80} backgroundColor={["red", "green", "blue", "purple"]}>
+        Test
+      </Box>
+    </>
+  ))
   .add(`is=''`, () => (
     <Box>
       <Box is="h1">h1</Box>
@@ -49,11 +43,11 @@ storiesOf('Box', module)
   .add(`custom comp`, () => (
     <Box>
       <Box is={CustomComp}>
-        <Box color="red">chiiillld</Box>
+        <Box>chiiillld</Box>
       </Box>
     </Box>
   ))
-  .add('background', () => (
+  .add("background", () => (
     <Box>
       <Box background="red" width="100px" height="100px" />
       <Box backgroundColor="blue" width="100px" height="100px" />
@@ -66,7 +60,7 @@ storiesOf('Box', module)
       />
     </Box>
   ))
-  .add('borderRadius', () => (
+  .add("borderRadius", () => (
     <Box>
       <RedBox borderRadius="5px" />
       <RedBox borderRadius="10px" borderTopRightRadius="50px" />
@@ -75,7 +69,7 @@ storiesOf('Box', module)
       <RedBox borderRadius="10px" borderBottomRightRadius="50px" />
     </Box>
   ))
-  .add('borders', () => (
+  .add("borders", () => (
     <Box>
       <RedBox border="10px solid grey" />
       <RedBox border="10px solid" borderColor="blue" />
@@ -87,12 +81,12 @@ storiesOf('Box', module)
       <RedBox borderLeft="10px solid grey" />
     </Box>
   ))
-  .add('boxShadow', () => (
+  .add("boxShadow", () => (
     <Box>
       <RedBox boxShadow="0 10px 40px black" />
     </Box>
   ))
-  .add('dimensions', () => (
+  .add("dimensions", () => (
     <Box>
       <RedBox />
       <RedBox minWidth="400px" />
@@ -101,13 +95,13 @@ storiesOf('Box', module)
       <RedBox minHeight={400} />
     </Box>
   ))
-  .add('display', () => (
+  .add("display", () => (
     <Box>
       <RedBox display="inline-block" />
       <RedBox display="inline">inline</RedBox>
     </Box>
   ))
-  .add('flex', () => (
+  .add("flex", () => (
     <Box>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <RedBox />
@@ -116,29 +110,24 @@ storiesOf('Box', module)
       </Box>
     </Box>
   ))
-  .add('overflow', () => (
+  .add("overflow", () => (
     <Box>
       <Box width="40px" height="40px" overflow="hidden">
         <RedBox />
       </Box>
     </Box>
   ))
-  .add('position', () => (
+  .add("position", () => (
     <Box>
       <RedBox position="absolute" left="10px" bottom="10px" />
     </Box>
   ))
-  .add('spacing', () => (
+  .add("spacing", () => (
     <Box>
-      <Box
-        backgroundColor="red"
-        width="100px"
-        height="100px"
-        marginTop="100px"
-      />
+      <Box backgroundColor="red" width="100px" height="100px" marginTop="100px" />
     </Box>
   ))
-  .add('text', () => (
+  .add("text", () => (
     <Box>
       <Box textAlign="center">Center</Box>
       <Box textAlign="right">Right</Box>
@@ -149,119 +138,37 @@ storiesOf('Box', module)
       <Box fontSize="72px">72px</Box>
     </Box>
   ))
-  .add('list', () => (
+  .add("list", () => (
     <Box is="ol" listStyleType="lower-greek">
       <Box is="li">I՚m</Box>
       <Box is="li">a</Box>
       <Box is="li">list</Box>
     </Box>
   ))
-  .add('utils', () => (
+  .add("utils", () => (
     <Box>
       <Box cursor="pointer">Center</Box>
       <Box boxSizing="border-box">boxSizing: border-box</Box>
     </Box>
   ))
-  .add('innerRef', () => (
+  .add("innerRef", () => (
     <Box>
-      <Box ref={logRef}>innerRef</Box>
+      <Box innerRef={logRef}>innerRef</Box>
     </Box>
   ))
-  .add('css', () => (
-    <Box>
-      <Box
-        className={css({ '::before': { content: '"something"' } })}
-        css={{
-          backgroundColor: 'red',
-          ':hover': { backgroundColor: 'blue' },
-          ':active': { backgroundColor: 'green' }
-        }}
-      >
-        css
-      </Box>
-    </Box>
-  ))
-  .add('props pass through', () => (
+  .add("props pass through", () => (
     <Box>
       <Box is="input" type="file" />
     </Box>
   ))
-  .add('all properties', () => (
+  .add("all properties", () => (
     <Box>
       {allPropertiesComponent()}
       {allPropertiesComponent()}
     </Box>
   ))
-  .add('overrides', () => (
+  .add("overrides", () => (
     <Box>
       <RedBox marginLeft="5px" />
     </Box>
-  ))
-  .add('media queries', () => (
-    <MediaQueryProvider
-      value={[
-        '@media(max-width: 768px)',
-        '@media(max-width: 480px)',
-        '@media(max-width: 360px)'
-      ]}
-    >
-      <Box
-        transition="1s"
-        backgroundColor={['yellow', 'orange', 'teal', 'brown']}
-        width={[400, 300, 200, 100]}
-        height={[400, 300, 200, 100]}
-        css={{
-          '::before': {
-            content: ['"default"', '"tablet"', '"smartphone"', '"small phone"']
-          }
-        }}
-      />
-      <Box
-        marginTop={24}
-        transition="1s"
-        backgroundColor={['purple', 'red', 'blue', 'green']}
-        width={[400, 300, 200, 100]}
-        height={[400, 300, 200, 100]}
-        css={{
-          '::before': {
-            content: ['"default"', '"tablet"', '"smartphone"', '"small phone"']
-          }
-        }}
-      />
-    </MediaQueryProvider>
-  ))
-  .add('pseudo queries', () => (
-    <MediaQueryProvider value={[':hover']}>
-      <Box
-        transition="0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550)"
-        transform={['scale(1)', 'scale(0.75)']}
-        width={400}
-        height={400}
-        borderRadius={[0, 500]}
-        backgroundColor={['red', 'blue']}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Box
-          background="white"
-          height={[50, 40]}
-          width={[50, 40]}
-          css={{ color: 'red' }}
-        >
-          Child
-        </Box>
-      </Box>
-      <Box
-        marginTop={24}
-        transition="2s cubic-bezier(0.680, -0.550, 0.265, 1.550)"
-        transform={['', 'scale(1.5)']}
-        transformOrigin="top left"
-        width={300}
-        height={300}
-        borderRadius={[500, 0]}
-        background="linear-gradient(rgba(255,100,100,1), rgba(0,100,255,1)), url(https://picsum.photos/500/500)"
-        backgroundBlendMode="overlay"
-      />
-    </MediaQueryProvider>
-  ))
+  ));

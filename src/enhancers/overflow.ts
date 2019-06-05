@@ -1,33 +1,38 @@
-import * as PropTypes from 'prop-types';
-import getCss, { GetCSS } from '../get-css';
-import { PropEncharValueType as ValueType } from './types';
+import PropTypes from "prop-types";
+import getCss from "../get-css";
+import { PropEnhancerValueType, PropValidators, PropEnhancers, PropTypesMapping, PropAliases } from "../types/enhancers";
 
-export const propTypes = {
+export const propTypes: PropTypesMapping = {
   overflow: PropTypes.string,
   overflowX: PropTypes.string,
   overflowY: PropTypes.string
 };
 
-export const propAliases = {
-  overflow: ['overflowX', 'overflowY']
+export const propAliases: PropAliases = {
+  overflow: ["overflowX", "overflowY"]
 };
 
-export const propValidators = {};
+export const propValidators: PropValidators = {};
 
 const overflowY = {
-  className: 'ovflw-y',
-  cssName: 'overflow-y',
-  jsName: 'overflowY',
+  className: "ovflw-y",
+  cssName: "overflow-y",
+  jsName: "overflowY",
   safeValue: true
 };
 const overflowX = {
-  className: 'ovflw-x',
-  cssName: 'overflow-x',
-  jsName: 'overflowX',
+  className: "ovflw-x",
+  cssName: "overflow-x",
+  jsName: "overflowX",
   safeValue: true
 };
 
-export const propEnhancers = {
-  overflowX: (value: ValueType): GetCSS => getCss(overflowX, value),
-  overflowY: (value: ValueType): GetCSS => getCss(overflowY, value)
+export const propValueTypes = {
+  overflowX,
+  overflowY
+};
+
+export const propEnhancers: PropEnhancers = {
+  overflowX: (value: PropEnhancerValueType) => getCss(overflowX, value),
+  overflowY: (value: PropEnhancerValueType) => getCss(overflowY, value)
 };

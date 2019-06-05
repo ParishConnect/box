@@ -4,72 +4,72 @@ import * as styles from "../src/styles";
 import enhanceProps from "../src/enhance-props";
 
 test.afterEach.always(() => {
-	cache.clear();
-	styles.clear();
+  cache.clear();
+  styles.clear();
 });
 
 test.serial("enhances a prop", t => {
-	const { className, enhancedProps } = enhanceProps({ width: 10 });
-	t.is(className, "al-w_10px");
-	t.deepEqual(enhancedProps, {});
+  const { className, enhancedProps } = enhanceProps({ width: 10 });
+  t.is(className, "♱w_10px");
+  t.deepEqual(enhancedProps, {});
 });
 
 test.serial("expands aliases", t => {
-	const { className, enhancedProps } = enhanceProps({ margin: 11 });
-	t.is(className, "al-mb_11px al-ml_11px al-mr_11px al-mt_11px");
-	t.deepEqual(enhancedProps, {});
+  const { className, enhancedProps } = enhanceProps({ margin: 11 });
+  t.is(className, "♱mb_11px ♱ml_11px ♱mr_11px ♱mt_11px");
+  t.deepEqual(enhancedProps, {});
 });
 
 test.serial("injects styles", t => {
-	enhanceProps({ width: 12 });
-	t.is(
-		styles.getAll(),
-		`
-.al-w_12px {
+  enhanceProps({ width: 12 });
+  t.is(
+    styles.getAll(),
+    `
+.♱w_12px {
   width: 12px;
 }`
-	);
+  );
 });
 
 test.serial("uses the cache", t => {
-	enhanceProps({ width: 13 });
-	enhanceProps({ width: 13 });
-	t.is(
-		styles.getAll(),
-		`
-.al-w_13px {
+  enhanceProps({ width: 13 });
+  enhanceProps({ width: 13 });
+  t.is(
+    styles.getAll(),
+    `
+.♱w_13px {
   width: 13px;
 }`
-	);
-	t.is(cache.get("width", 13), "al-w_13px");
+  );
+  t.is(cache.get("width", 13), "♱w_13px");
 });
 
 test.serial("strips falsey enhancer props", t => {
-	const { className, enhancedProps } = enhanceProps({ width: false });
-	t.is(className, "");
-	t.deepEqual(enhancedProps, {});
+  const { className, enhancedProps } = enhanceProps({ width: false });
+  t.is(className, "");
+  t.deepEqual(enhancedProps, {});
 });
 
 test.serial("does not strip enhancer props with 0 values", t => {
-	const { className, enhancedProps } = enhanceProps({ width: 0 });
-	t.is(className, "al-w_0px");
-	t.deepEqual(enhancedProps, {});
+  const { className, enhancedProps } = enhanceProps({ width: 0 });
+  t.is(className, "♱w_0px");
+  t.deepEqual(enhancedProps, {});
 });
 
 test.serial("passes through non-enhancer props", t => {
-	const { className, enhancedProps } = enhanceProps({ disabled: true });
-	t.is(className, "");
-	t.deepEqual(enhancedProps, { disabled: true });
+  const { className, enhancedProps } = enhanceProps({ disabled: true });
+  t.is(className, "");
+  t.deepEqual(enhancedProps, { disabled: true });
 });
 
 test.serial("passes through falsey non-enhancer props", t => {
-	const { className, enhancedProps } = enhanceProps({ disabled: false });
-	t.is(className, "");
-	t.deepEqual(enhancedProps, { disabled: false });
+  const { className, enhancedProps } = enhanceProps({ disabled: false });
+  t.is(className, "");
+  t.deepEqual(enhancedProps, { disabled: false });
 });
 
 test.serial("handles invalid values", t => {
-	const { className, enhancedProps } = enhanceProps({ minWidth: true });
-	t.is(className, "");
-	t.deepEqual(enhancedProps, {});
+  const { className, enhancedProps } = enhanceProps({ minWidth: true });
+  t.is(className, "");
+  t.deepEqual(enhancedProps, {});
 });

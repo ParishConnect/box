@@ -1,24 +1,18 @@
-import StyleSheet from './utils/style-sheet';
+import StyleSheet from "./utils/style-sheet";
 
 const styleSheet = new StyleSheet({});
 styleSheet.inject();
 
-export function add(styles: string): void {
+export function add(styles: string) {
   styleSheet.insert(styles);
 }
 
-export function getAll(): string {
+export function getAll() {
   // Convert rules array to a string
-  return styleSheet
-    .rules()
-    .reduce(
-      (combinedRules: string, rule: { cssText: string }) =>
-        combinedRules + rule.cssText,
-      ''
-    );
+  return styleSheet.rules().reduce((combinedRules: string, rule: { cssText: string }) => combinedRules + rule.cssText, "");
 }
 
-export function clear(): void {
+export function clear() {
   styleSheet.flush();
   styleSheet.inject();
 }

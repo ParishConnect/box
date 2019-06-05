@@ -1,9 +1,11 @@
-import * as cache from './cache'
-import * as styles from './styles'
+import * as cache from "./cache";
+import * as styles from "./styles";
 
-export { css } from 'emotion'
-export { default } from './box'
-export { Box as BoxType, BoxProps } from './box-types'
+export { default } from "./box";
+export { default as splitProps } from "./utils/split-props";
+export { default as splitBoxProps } from "./utils/split-box-props";
+export { default as MediaQueryContext, MediaQueryConsumer, MediaQueryProvider } from "./utils/media-query-context";
+
 export {
   background,
   borderRadius,
@@ -17,32 +19,27 @@ export {
   opacity,
   overflow,
   position,
-  propAliases,
-  propEnhancers,
-  propNames,
-  propTypes,
   spacing,
   text,
-  transform
-} from './enhancers/index'
-export { MediaQueryProvider } from './media-query-context'
-export { default as splitBoxProps } from './utils/split-box-props'
-export { default as splitProps } from './utils/split-props'
+  transform,
+  propTypes,
+  propNames,
+  propAliases,
+  propEnhancers
+} from "./enhancers/index";
 
-export function hydrate(entries) {
-  cache.hydrate(entries)
-}
+export const hydrate = cache.hydrate;
 
 export function extractStyles() {
   const output = {
     cache: cache.entries(),
     styles: styles.getAll()
-  }
-  clearStyles()
-  return output
+  };
+  clearStyles();
+  return output;
 }
 
 export function clearStyles() {
-  cache.clear()
-  styles.clear()
+  cache.clear();
+  styles.clear();
 }
