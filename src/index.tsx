@@ -5,6 +5,7 @@ export { default } from "./box";
 export { default as splitProps } from "./utils/split-props";
 export { default as splitBoxProps } from "./utils/split-box-props";
 export { default as MediaQueryContext, MediaQueryConsumer, MediaQueryProvider } from "./utils/media-query-context";
+export * from "./types/box-types";
 
 export {
   background,
