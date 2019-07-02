@@ -1,11 +1,11 @@
 import { ClassNames } from "@emotion/core";
 import facepaint from "facepaint";
-import cc from "classcat";
 import * as CSS from "csstype";
 import React, { ReactNode } from "react";
 import expandAliases from "./expandAliases";
+import splitCSSProps from "./splitCSSProps";
 
-export interface BoxProps extends CSS.PropertiesFallback<number | string | number[] | string[] | null> {
+export interface BoxProps extends CSS.StandardPropertiesFallback<number | string | number[] | string[] | null> {
   is?: any;
   className?: string;
   css?: any;
@@ -15,19 +15,27 @@ export interface BoxProps extends CSS.PropertiesFallback<number | string | numbe
   [key: string]: any;
 }
 
-const Box = ({ is = "div", className, css, props, style, children, ...rest }: BoxProps) => {
+const Box = ({ is = "div", className, innerRef, css, props = {}, style, children, ...rest }: BoxProps) => {
   const mq = facepaint(["@media(min-width: 420px)", "@media(min-width: 920px)", "@media(min-width: 1120px)"]);
 
   rest = expandAliases(rest);
+  const { matched, remaining } = splitCSSProps(rest);
+
+  if (innerRef) {
+    props!.ref = innerRef;
+  }
+
+  console.log(matched);
 
   return (
     <ClassNames>
-      {({ css: ecss }) =>
+      {({ css: ecss, cx }) =>
         React.createElement(
           is,
           {
-            className: cc([ecss(mq([css, rest])), className]),
+            className: cx([ecss(mq([css, matched])), className]),
             style,
+            ...remaining,
             ...props
           },
           children

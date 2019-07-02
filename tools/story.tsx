@@ -20,6 +20,10 @@ const CustomComp: React.FC<CustomProps> = props => {
   );
 };
 
+function majorScale(num: number): number {
+  return num * 8;
+}
+
 storiesOf("Box", module)
   .add(`mq`, () => (
     <Box>
@@ -59,6 +63,11 @@ storiesOf("Box", module)
         width="100px"
         height="100px"
       />
+    </Box>
+  ))
+  .add("css", () => (
+    <Box>
+      <Box width={200} height={majorScale(40)} css={{ border: "10px solid green", background: "linear-gradient(rebeccapurple, goldenrod)" }} />
     </Box>
   ))
   .add("borderRadius", () => (
@@ -154,7 +163,9 @@ storiesOf("Box", module)
   ))
   .add("innerRef", () => (
     <Box>
-      <Box innerRef={logRef}>innerRef</Box>
+      <Box onClick={() => console.log("hit")} innerRef={logRef}>
+        innerRef
+      </Box>
     </Box>
   ))
   .add("aliases", () => (
