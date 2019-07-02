@@ -21,14 +21,14 @@ const CustomComp: React.FunctionComponent<CustomProps> = props => {
 
 storiesOf("Box", module)
   .add(`mq`, () => (
-    <>
-      <Box transition="3s" height={80} borderRadius={[null, null, 1000]} backgroundColor={["red", "green", "blue", "yellow"]}>
+    <Box>
+      <Box transition="3s" height={80} borderRadius={[null, null, 1000]} backgroundColor={["red", "green", "blue"]}>
         Test
       </Box>
-      <Box transition="3s" marginTop={16} height={80} backgroundColor={["red", "green", "blue", "purple"]}>
+      <Box transition="3s" marginTop={16} height={80} backgroundColor={["red", "green", "blue"]}>
         Test
       </Box>
-    </>
+    </Box>
   ))
   .add(`is=''`, () => (
     <Box>

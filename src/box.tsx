@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Is, BoxProps, BoxComponent } from "./types/box-types";
 import enhanceProps from "./enhance-props";
-import { MediaQueryContext } from "./index";
 
 type Options<T extends Is> = {
   is: T;
@@ -10,8 +9,7 @@ type Options<T extends Is> = {
 function createComponent<T extends Is>({ is: defaultIs }: Options<T>) {
   const Component: BoxComponent<T> = ({ is = defaultIs, innerRef, children, ...props }: BoxProps<T>) => {
     // Convert the CSS props to class names (and inject the styles)
-    const mqContext = useContext(MediaQueryContext);
-    const { className, enhancedProps: parsedProps } = enhanceProps(props, mqContext);
+    const { className, enhancedProps: parsedProps } = enhanceProps(props);
 
     parsedProps.className = className;
 

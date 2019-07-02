@@ -14,13 +14,13 @@ interface EnhancedPropsResult {
   enhancedProps: PreservedProps;
 }
 
+const mq = facepaint(["@media(max-width: 1121px)", "@media(max-width: 921px)", "@media(max-width: 421px)"]);
+
 /**
  * Converts the CSS props to class names and inserts the styles.
  */
-export default function enhanceProps(rawProps: EnhancerProps & React.ComponentPropsWithoutRef<any>, mqContext?: any): EnhancedPropsResult {
+export default function enhanceProps(rawProps: EnhancerProps & React.ComponentPropsWithoutRef<any>): EnhancedPropsResult {
   const propsMap = expandAliases(rawProps);
-
-  const mq = facepaint(mqContext);
 
   const preservedProps: PreservedProps = {};
   let className = rawProps.className || "";
@@ -40,11 +40,6 @@ export default function enhanceProps(rawProps: EnhancerProps & React.ComponentPr
 
       Object.keys(mqProps).forEach(key => {
         if (typeof mqProps[key] !== "object") {
-          const cachedClassName = cache.get(propName, mqProps[key]);
-          if (cachedClassName) {
-            className = `${className} ${cachedClassName}`;
-            return;
-          }
           const enhancer = propEnhancers[propName];
           if (enhancer && (propValue === null || propValue === undefined || propValue === false)) {
             return;
@@ -57,8 +52,7 @@ export default function enhanceProps(rawProps: EnhancerProps & React.ComponentPr
           // Allow enhancers to return null for invalid values
           if (newCss) {
             styles.add(newCss.styles);
-            cache.set(propName, mqProps[key], newCss.className);
-            cache.set(propName, propValue, `${newCss.className} ${sharedClassName}`);
+            cache.set(propName, propValue, `${sharedClassName} ${newCss.className}`);
             className = `${className} ${sharedClassName} ${newCss.className}`;
             addedClassName = true;
           }
