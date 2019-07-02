@@ -3,7 +3,7 @@
   "version": "1.5.0",
   "description": "Blazing Fast React UI Primitive",
   "contributors": [],
-  "repository": "@parishconnect/box",
+  "repository": "hennessyevan/box",
   "license": "PCLL",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
