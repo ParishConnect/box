@@ -1,6 +1,6 @@
 import { BoxProps } from "./box";
 
-export default function expandAliases(props: BoxProps): BoxProps {
+export default function expandAliases(props: BoxProps, css: any = {}): [BoxProps, object] {
   if (props.marginX) {
     props.marginLeft = props.marginLeft || props.marginX;
     props.marginRight = props.marginRight || props.marginX;
@@ -21,6 +21,14 @@ export default function expandAliases(props: BoxProps): BoxProps {
     props.paddingBottom = props.paddingBottom || props.paddingY;
     delete props.paddingY;
   }
+  if (props.clearfix) {
+    css["::before, ::after"] = {
+      display: "table",
+      clear: "both",
+      content: ""
+    };
+    delete props.clearfix;
+  }
 
-  return props;
+  return [props, css];
 }

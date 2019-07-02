@@ -18,14 +18,12 @@ export interface BoxProps extends CSS.StandardPropertiesFallback<number | string
 const Box = ({ is = "div", className, innerRef, css, props = {}, style, children, ...rest }: BoxProps) => {
   const mq = facepaint(["@media(min-width: 420px)", "@media(min-width: 920px)", "@media(min-width: 1120px)"]);
 
-  rest = expandAliases(rest);
+  [rest, css] = expandAliases(rest, css);
   const { matched, remaining } = splitCSSProps(rest);
 
   if (innerRef) {
     props!.ref = innerRef;
   }
-
-  console.log(matched);
 
   return (
     <ClassNames>
