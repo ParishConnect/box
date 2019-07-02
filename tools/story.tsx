@@ -1,6 +1,6 @@
-import React from "react";
-import Box from "../src";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
+import Box from "../src";
 import allPropertiesComponent from "./all-properties-component";
 
 const RedBox = (redBoxProps: any) => <Box background="red" width="100px" height="100px" margin="20px" {...redBoxProps} />;
@@ -10,7 +10,8 @@ const logRef = (ref: any) => console.log(ref);
 interface CustomProps {
   children: React.ReactNode;
 }
-const CustomComp: React.FunctionComponent<CustomProps> = props => {
+
+const CustomComp: React.FC<CustomProps> = props => {
   return (
     <div>
       <Box is="h1">custom component</Box>

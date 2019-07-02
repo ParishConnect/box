@@ -1,41 +1,41 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Is, BoxProps, BoxComponent } from "./types/box-types";
-import { propTypes } from "./enhancers";
-import enhanceProps from "./enhance-props";
+import { ClassNames } from "@emotion/core";
+import facepaint from "facepaint";
+import cc from "classcat";
+import * as CSS from "csstype";
+import React, { ReactNode } from "react";
 
-type Options<T extends Is> = {
-  is: T;
-};
-
-function createComponent<T extends Is>({ is: defaultIs }: Options<T>) {
-  const Component: BoxComponent<T> = ({ is = defaultIs, innerRef, children, ...props }: BoxProps<T>) => {
-    // Convert the CSS props to class names (and inject the styles)
-    const { className, enhancedProps: parsedProps } = enhanceProps(props);
-
-    parsedProps.className = className;
-
-    if (innerRef) {
-      parsedProps.ref = innerRef;
-    }
-
-    return React.createElement(is, parsedProps, children);
-  };
-  (Component as any).displayName = "Box";
-  (Component as any).propTypes = {
-    ...propTypes,
-    innerRef: PropTypes.func,
-    is: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-  };
-  (Component as any).defaultProps = {
-    innerRef: null,
-    is: "div",
-    boxSizing: "border-box"
-  };
-
-  return Component;
+export interface BoxProps extends CSS.PropertiesFallback<number | string | number[] | string[] | null> {
+  is?: any;
+  className?: string;
+  css?: any;
+  props?: React.InputHTMLAttributes<HTMLInputElement> & React.ClassAttributes<HTMLInputElement> | null | undefined;
+  style?: object;
+  children?: ReactNode | ReactNode[];
+  [key: string]: any;
 }
 
-const Box = createComponent({ is: "div" });
+const Box = ({ is = "div", className, css, props, style, children, ...rest }: BoxProps) => {
+  const mq = facepaint(["@media(min-width: 420px)", "@media(min-width: 920px)", "@media(min-width: 1120px)"]);
+
+  return (
+    <ClassNames>
+      {({ css: ecss }) =>
+        React.createElement(
+          is,
+          {
+            className: cc([ecss(mq([css, rest])), className]),
+            style,
+            ...props
+          },
+          children
+        )
+      }
+    </ClassNames>
+  );
+};
+
+Box.defaultProps = {
+  boxSizing: "border-box"
+};
 
 export default Box;
