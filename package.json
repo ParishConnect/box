@@ -15,7 +15,6 @@
     "test": "xo && nyc ava",
     "prepublishOnly": "rm -rf dist && yarn run build",
     "dev": "start-storybook -p 9009",
-    "start": "yarn dev",
     "build": "tsc",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "release": "np --no-publish",
