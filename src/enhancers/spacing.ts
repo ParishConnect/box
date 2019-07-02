@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
-import getCss from "../get-css";
-import { spacesOutsideParentheses } from "../utils/regex";
-import { PropEnhancerValueType, PropValidators, PropEnhancers, PropTypesMapping, PropAliases } from "../types/enhancers";
+import PropTypes from 'prop-types'
+import getCss from '../get-css'
+import {spacesOutsideParentheses} from '../utils/regex'
+import { PropEnhancerValueType, PropValidators, PropEnhancers, PropTypesMapping, PropAliases } from '../types/enhancers'
 
 export const propTypes: PropTypesMapping = {
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -18,114 +18,103 @@ export const propTypes: PropTypesMapping = {
   paddingTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   paddingX: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   paddingY: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+}
 
 export const propAliases: PropAliases = {
-  margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
-  marginX: ["marginLeft", "marginRight"],
-  marginY: ["marginBottom", "marginTop"],
-  padding: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
-  paddingX: ["paddingLeft", "paddingRight"],
-  paddingY: ["paddingBottom", "paddingTop"]
-};
+  margin: ['marginBottom', 'marginLeft', 'marginRight', 'marginTop'],
+  marginX: ['marginLeft', 'marginRight'],
+  marginY: ['marginBottom', 'marginTop'],
+  padding: ['paddingBottom', 'paddingLeft', 'paddingRight', 'paddingTop'],
+  paddingX: ['paddingLeft', 'paddingRight'],
+  paddingY: ['paddingBottom', 'paddingTop']
+}
 
-export const propValidators: PropValidators = {};
+export const propValidators: PropValidators = {}
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   propValidators.margin = value => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “margin”. Use “marginX”, “marginY” “marginBottom”, “marginLeft”, “marginRight” and “marginTop” instead.`;
+      return `multiple values (“${value}”) aren՚t supported with “margin”. Use “marginX”, “marginY” “marginBottom”, “marginLeft”, “marginRight” and “marginTop” instead.`
     }
-    return;
-  };
+    return
+  }
 
   propValidators.marginX = value => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “marginX”. Use “marginLeft” and “marginRight” instead.`;
+      return `multiple values (“${value}”) aren՚t supported with “marginX”. Use “marginLeft” and “marginRight” instead.`
     }
-    return;
-  };
+    return
+  }
 
   propValidators.marginY = value => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “marginY”. Use “marginBottom” and “marginTop” instead.`;
+      return `multiple values (“${value}”) aren՚t supported with “marginY”. Use “marginBottom” and “marginTop” instead.`
     }
-    return;
-  };
+    return
+  }
 
   propValidators.padding = value => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “padding”. Use “paddingX”, “paddingY” “paddingBottom”, “paddingLeft”, “paddingRight” and “paddingTop” instead.`;
+      return `multiple values (“${value}”) aren՚t supported with “padding”. Use “paddingX”, “paddingY” “paddingBottom”, “paddingLeft”, “paddingRight” and “paddingTop” instead.`
     }
-    return;
-  };
+    return
+  }
 
   propValidators.paddingX = value => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “paddingX”. Use “paddingLeft” and “paddingRight” instead.`;
+      return `multiple values (“${value}”) aren՚t supported with “paddingX”. Use “paddingLeft” and “paddingRight” instead.`
     }
-    return;
-  };
+    return
+  }
 
   propValidators.paddingY = value => {
     if (spacesOutsideParentheses.test(value)) {
-      return `multiple values (“${value}”) aren՚t supported with “paddingY”. Use “paddingBottom” and “paddingTop” instead.`;
+      return `multiple values (“${value}”) aren՚t supported with “paddingY”. Use “paddingBottom” and “paddingTop” instead.`
     }
-    return;
-  };
+    return
+  }
 }
 
 const marginTop = {
-  className: "mt",
-  cssName: "margin-top",
-  jsName: "marginTop"
-};
+  className: 'mt',
+  cssName: 'margin-top',
+  jsName: 'marginTop'
+}
 const marginRight = {
-  className: "mr",
-  cssName: "margin-right",
-  jsName: "marginRight"
-};
+  className: 'mr',
+  cssName: 'margin-right',
+  jsName: 'marginRight'
+}
 const marginBottom = {
-  className: "mb",
-  cssName: "margin-bottom",
-  jsName: "marginBottom"
-};
+  className: 'mb',
+  cssName: 'margin-bottom',
+  jsName: 'marginBottom'
+}
 const marginLeft = {
-  className: "ml",
-  cssName: "margin-left",
-  jsName: "marginLeft"
-};
+  className: 'ml',
+  cssName: 'margin-left',
+  jsName: 'marginLeft'
+}
 const paddingTop = {
-  className: "pt",
-  cssName: "padding-top",
-  jsName: "paddingTop"
-};
+  className: 'pt',
+  cssName: 'padding-top',
+  jsName: 'paddingTop'
+}
 const paddingRight = {
-  className: "pr",
-  cssName: "padding-right",
-  jsName: "paddingRight"
-};
+  className: 'pr',
+  cssName: 'padding-right',
+  jsName: 'paddingRight'
+}
 const paddingBottom = {
-  className: "pb",
-  cssName: "padding-bottom",
-  jsName: "paddingBottom"
-};
+  className: 'pb',
+  cssName: 'padding-bottom',
+  jsName: 'paddingBottom'
+}
 const paddingLeft = {
-  className: "pl",
-  cssName: "padding-left",
-  jsName: "paddingLeft"
-};
-
-export const propValueTypes = {
-  marginBottom,
-  marginLeft,
-  marginRight,
-  marginTop,
-  paddingBottom,
-  paddingLeft,
-  paddingRight,
-  paddingTop
-};
+  className: 'pl',
+  cssName: 'padding-left',
+  jsName: 'paddingLeft'
+}
 
 export const propEnhancers: PropEnhancers = {
   marginBottom: (value: PropEnhancerValueType) => getCss(marginBottom, value),
@@ -136,4 +125,4 @@ export const propEnhancers: PropEnhancers = {
   paddingLeft: (value: PropEnhancerValueType) => getCss(paddingLeft, value),
   paddingRight: (value: PropEnhancerValueType) => getCss(paddingRight, value),
   paddingTop: (value: PropEnhancerValueType) => getCss(paddingTop, value)
-};
+}

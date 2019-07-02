@@ -47,14 +47,6 @@ const boxSizing = {
   safeValue: true
 };
 
-export const propValueTypes = {
-  display,
-  float,
-  clear,
-  zIndex,
-  boxSizing
-};
-
 export const propEnhancers: PropEnhancers = {
   boxSizing: (value: PropEnhancerValueType) => getCss(boxSizing, value),
   clear: (value: PropEnhancerValueType) => getCss(clear, value),

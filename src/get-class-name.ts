@@ -27,8 +27,6 @@ export default function getClassName(propertyInfo: PropertyInfo, value: string) 
     /* Always hash values that contain a calc() because the operators get
     stripped which can result in class name collisions
     */
-  } else if (typeof value === "object") {
-    valueKey = hash(value);
   } else if (complexValue || value.includes("calc(")) {
     valueKey = hash(value);
   } else if (safeValue) {

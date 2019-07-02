@@ -22,7 +22,7 @@ export default function expandAliases(props: { [key: string]: BoxPropValue }) {
       if (validator) {
         const result = validator(propValue);
         if (result) {
-          throw new Error(`parishconnect-box: ${result}`);
+          throw new Error(`♱ ui-box: ${result}`);
         }
       }
     }

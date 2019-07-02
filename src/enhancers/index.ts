@@ -1,22 +1,21 @@
-import * as background from "./background";
-import * as borderRadius from "./border-radius";
-import * as borders from "./borders";
-import * as boxShadow from "./box-shadow";
-import * as dimensions from "./dimensions";
-import * as flex from "./flex";
-import * as grid from "./grid";
-import * as interaction from "./interaction";
-import * as layout from "./layout";
-import * as list from "./list";
-import * as opacity from "./opacity";
-import * as overflow from "./overflow";
-import * as position from "./position";
-import * as spacing from "./spacing";
-import * as text from "./text";
-import * as transform from "./transform";
-import * as transition from "./transition";
-import { PropValidators, PropEnhancers, PropAliases, PropTypesMapping } from "../types/enhancers";
-import { PropertyInfo } from "../get-class-name";
+import * as background from './background'
+import * as borderRadius from './border-radius'
+import * as borders from './borders'
+import * as boxShadow from './box-shadow'
+import * as dimensions from './dimensions'
+import * as flex from './flex'
+import * as grid from './grid'
+import * as interaction from './interaction'
+import * as layout from './layout'
+import * as list from './list'
+import * as opacity from './opacity'
+import * as overflow from './overflow'
+import * as position from './position'
+import * as spacing from './spacing'
+import * as text from './text'
+import * as transform from './transform'
+import * as transition from './transition'
+import { PropValidators, PropEnhancers, PropAliases, PropTypesMapping } from '../types/enhancers'
 
 export {
   background,
@@ -36,7 +35,7 @@ export {
   text,
   transform,
   transition
-};
+}
 
 export const propTypes: PropTypesMapping = {
   ...background.propTypes,
@@ -56,9 +55,9 @@ export const propTypes: PropTypesMapping = {
   ...text.propTypes,
   ...transform.propTypes,
   ...transition.propTypes
-};
+}
 
-export const propNames = Object.keys(propTypes);
+export const propNames = Object.keys(propTypes)
 
 export const propAliases: PropAliases = {
   ...background.propAliases,
@@ -78,7 +77,7 @@ export const propAliases: PropAliases = {
   ...text.propAliases,
   ...transform.propAliases,
   ...transition.propAliases
-};
+}
 
 export const propValidators: PropValidators = {
   ...background.propValidators,
@@ -98,7 +97,7 @@ export const propValidators: PropValidators = {
   ...text.propValidators,
   ...transform.propValidators,
   ...transition.propValidators
-};
+}
 
 export const propEnhancers: PropEnhancers = {
   ...background.propEnhancers,
@@ -118,24 +117,4 @@ export const propEnhancers: PropEnhancers = {
   ...text.propEnhancers,
   ...transform.propEnhancers,
   ...transition.propEnhancers
-};
-
-export const propValueTypes: { [key: string]: PropertyInfo } = {
-  ...background.propValueTypes,
-  ...borderRadius.propValueTypes,
-  ...borders.propValueTypes,
-  ...boxShadow.propValueTypes,
-  ...dimensions.propValueTypes,
-  ...flex.propValueTypes,
-  ...grid.propValueTypes,
-  ...interaction.propValueTypes,
-  ...layout.propValueTypes,
-  ...list.propValueTypes,
-  ...opacity.propValueTypes,
-  ...overflow.propValueTypes,
-  ...position.propValueTypes,
-  ...spacing.propValueTypes,
-  ...text.propValueTypes,
-  ...transform.propValueTypes,
-  ...transition.propValueTypes
-};
+}

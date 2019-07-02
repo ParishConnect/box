@@ -11,11 +11,11 @@ export default function getCss(propertyInfo: PropertyInfo, value: string | numbe
 
   // Protect against unexpected values
   const valueType = typeof value;
-  if (valueType !== "string" && valueType !== "number" && valueType !== "object") {
+  if (valueType !== "string" && valueType !== "number") {
     if (process.env.NODE_ENV !== "production") {
       const name = propertyInfo.jsName;
       const encodedValue = JSON.stringify(value);
-      console.error(`parishconnect-box: property “${name}” was passed invalid value “${encodedValue}”. Only numbers and strings are supported.`);
+      console.error(`♱ ui-box: property “${name}” was passed invalid value “${encodedValue}”. Only numbers and strings are supported.`);
     }
 
     return null;
