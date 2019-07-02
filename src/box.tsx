@@ -3,6 +3,7 @@ import facepaint from "facepaint";
 import cc from "classcat";
 import * as CSS from "csstype";
 import React, { ReactNode } from "react";
+import expandAliases from "./expandAliases";
 
 export interface BoxProps extends CSS.PropertiesFallback<number | string | number[] | string[] | null> {
   is?: any;
@@ -16,6 +17,8 @@ export interface BoxProps extends CSS.PropertiesFallback<number | string | numbe
 
 const Box = ({ is = "div", className, css, props, style, children, ...rest }: BoxProps) => {
   const mq = facepaint(["@media(min-width: 420px)", "@media(min-width: 920px)", "@media(min-width: 1120px)"]);
+
+  rest = expandAliases(rest);
 
   return (
     <ClassNames>

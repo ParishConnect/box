@@ -157,6 +157,12 @@ storiesOf("Box", module)
       <Box innerRef={logRef}>innerRef</Box>
     </Box>
   ))
+  .add("aliases", () => (
+    <Box>
+      <Box width={200} height={200} background="red" marginY={64} paddingX={18} marginX={18} />
+      <Box width={200} height={200} background="blue" />
+    </Box>
+  ))
   .add("props pass through", () => (
     <Box>
       <Box is="input" type="file" />
