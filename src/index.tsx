@@ -1,1 +1,1 @@
-export { default } from "./box";
+export { default, BoxProps } from "./box";
