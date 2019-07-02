@@ -13,7 +13,7 @@
   "sideEffects": false,
   "scripts": {
     "prepublishOnly": "rm -rf dist && yarn run build",
-    "dev": "start-storybook -p 9009",
+    "start": "start-storybook -p 9009",
     "build": "tsc",
     "build-storybook": "build-storybook -s .storybook/static -o .out"
   },
