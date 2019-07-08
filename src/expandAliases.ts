@@ -1,6 +1,7 @@
 import { BoxProps } from "./box";
+import { CSSObject } from "@emotion/css";
 
-export default function expandAliases(props: BoxProps, css: any = {}): [BoxProps, object] {
+export default function expandAliases(props: BoxProps, css: any = {}): [BoxProps, CSSObject] {
   if (props.marginX) {
     props.marginLeft = props.marginLeft || props.marginX;
     props.marginRight = props.marginRight || props.marginX;
