@@ -1,14 +1,15 @@
 import { ClassNames } from "@emotion/core";
 import facepaint from "facepaint";
 import * as CSS from "csstype";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
 import expandAliases from "./expandAliases";
 import splitCSSProps from "./splitCSSProps";
+import { MediaQueryContext } from "./mqcontext";
 
 export interface BoxProps extends CSS.StandardPropertiesFallback<number | string | number[] | string[] | null> {
   is?: any;
   className?: string;
-  css?: any;
+  css?: CSS.StandardPropertiesFallback<number | string | number[] | string[] | null>;
   props?: React.InputHTMLAttributes<HTMLInputElement> & React.ClassAttributes<HTMLInputElement> | null | undefined;
   style?: object;
   children?: ReactNode | ReactNode[];
@@ -16,7 +17,8 @@ export interface BoxProps extends CSS.StandardPropertiesFallback<number | string
 }
 
 const Box = ({ is = "div", className, innerRef, css, props = {}, style, children, ...rest }: BoxProps) => {
-  const mq = facepaint(["@media(min-width: 420px)", "@media(min-width: 920px)", "@media(min-width: 1120px)"]);
+  const mqContext = useContext(MediaQueryContext);
+  const mq = facepaint(mqContext);
 
   [rest, css] = expandAliases(rest, css);
   const { matched, remaining } = splitCSSProps(rest);
