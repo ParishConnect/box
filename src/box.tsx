@@ -1,4 +1,4 @@
-import { ClassNames } from "@emotion/core";
+import { ClassNames, CSSObject } from "@emotion/core";
 import facepaint from "facepaint";
 import * as CSS from "csstype";
 import React, { ReactNode, useContext } from "react";
@@ -9,7 +9,7 @@ import { MediaQueryContext } from "./mqcontext";
 export interface BoxProps extends CSS.StandardPropertiesFallback<number | string | number[] | string[] | null> {
   is?: any;
   className?: string;
-  css?: CSS.StandardPropertiesFallback<number | string | number[] | string[] | null>;
+  css?: CSSObject;
   props?: React.InputHTMLAttributes<HTMLInputElement> & React.ClassAttributes<HTMLInputElement> | null | undefined;
   style?: object;
   children?: ReactNode | ReactNode[];
