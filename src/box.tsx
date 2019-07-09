@@ -1,7 +1,7 @@
 import { ClassNames, CSSObject } from "@emotion/core";
 import facepaint from "facepaint";
 import * as CSS from "csstype";
-import React, { ReactNode, useContext } from "react";
+import React, { ReactNode, useContext, forwardRef, Ref } from "react";
 import expandAliases from "./expandAliases";
 import splitCSSProps from "./splitCSSProps";
 import { MediaQueryContext } from "./mqcontext";
@@ -16,7 +16,7 @@ export interface BoxProps extends CSS.StandardPropertiesFallback<number | string
   [key: string]: any;
 }
 
-const Box = ({ is = "div", className, innerRef, css, props = {}, style, children, ...rest }: BoxProps) => {
+const Box = forwardRef(({ is = "div", className, innerRef, css, props = {}, style, children, ...rest }: BoxProps, ref: Ref<any>) => {
   const mqContext = useContext(MediaQueryContext);
   const mq = facepaint(mqContext);
 
@@ -35,6 +35,7 @@ const Box = ({ is = "div", className, innerRef, css, props = {}, style, children
           {
             className: cx([ecss(mq([css, matched])), className]),
             style,
+            ref,
             ...remaining,
             ...props
           },
@@ -43,7 +44,7 @@ const Box = ({ is = "div", className, innerRef, css, props = {}, style, children
       }
     </ClassNames>
   );
-};
+});
 
 Box.defaultProps = {
   boxSizing: "border-box"

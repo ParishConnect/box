@@ -26,7 +26,7 @@ export default function expandAliases(props: BoxProps, css: any = {}): [BoxProps
     css["::before, ::after"] = {
       display: "table",
       clear: "both",
-      content: ""
+      content: "''"
     };
     delete props.clearfix;
   }
