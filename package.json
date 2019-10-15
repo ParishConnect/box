@@ -2,14 +2,21 @@
   "name": "@parishconnect/box",
   "version": "2.2.8",
   "description": "Blazing Fast React UI Primitive",
-  "contributors": [],
-  "repository": "hennessyevan/box",
-  "license": "PCLL",
+  "contributors": [
+    "Evan Hennessy <hennessyevan@users.noreply.github.com>"
+  ],
+  "author": "Evan Hennessy <hennessyevan@users.noreply.github.com>",
+  "repository": "https://github.com/parishconnect/box",
+  "license": "UNLICENSED",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com/"
+  },
   "sideEffects": false,
   "scripts": {
     "prepublishOnly": "rm -rf dist && yarn run build",
